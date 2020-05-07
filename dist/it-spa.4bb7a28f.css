@@ -10643,17 +10643,55 @@ a.text-dark:hover, a.text-dark:focus {
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  font-size: 15px; }
 
-.treatmentItem,
-.roomItem {
+.treatment-item,
+.room-item {
   margin-right: 40px; }
 
-.treatmentRow:nth-child(odd) {
-  background-color: #b2b2b2; }
+.room-box {
+  position: relative;
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 1%;
+  padding: 1rem; }
 
-.treatmentRow:nth-child(even) {
-  background-color: #f4e1d2; }
+#rooms-list li {
+  display: inline;
+  margin: 0 0 2rem 0; }
+
+#rooms-list {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly; }
+
+.treatment-box {
+  width: 25rem;
+  height: 20rem;
+  position: relative;
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 1%;
+  padding: 1rem; }
+
+#treatments-list li {
+  display: inline;
+  margin: 0 0 2rem 0; }
+
+#treatments-list {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly; }
+
+.box-content-footer {
+  bottom: 0;
+  position: absolute;
+  width: 100%; }
+
+.treatment-box:nth-child(odd) {
+  background-color: whitesmoke; }
+
+.treatment-box:nth-child(even) {
+  background-color: whitesmoke; }
 
 .roomRow:nth-child(odd) {
   background-color: #f18973; }
@@ -10712,6 +10750,13 @@ a {
 
 .simple-input {
   margin: 15px; }
+
+.order {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  height: 2rem;
+  background-color: lightyellow; }
 
 
 /*# sourceMappingURL=/it-spa.4bb7a28f.css.map */

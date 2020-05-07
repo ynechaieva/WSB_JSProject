@@ -1,25 +1,36 @@
 import $ from 'jquery';
 import { Cart } from '../../cart/cart';
+import { Box } from '../../components/box';
 
 const cart = new Cart();
 
+
 export const treatmentsListItem = (treatment) => {
-    const li = $('<li class="list-group-item treatmentRow"></li>')
-        .attr('id', treatment.id);
-   
-    let name = $('<span></span>').text(treatment.name).addClass('treatmentItem treatment-name');
-    let area = $('<span></span>').text(treatment.area).addClass('treatmentItem treatment-area');
-    let time = $('<span></span>').text(treatment.time + ' min').addClass('treatmentItem treatment-time');
-    let price = $('<span></span>').text(treatment.price + ' PLN').addClass('treatmentItem treatment-price');
-    li.append(name).append(area).append(time).append(price);
-    
-    const addTreatmentToCart = function() {
-        cart.add('treatments', treatment);
-    }
+  const box = new Box();
+  const li = $('<li class="treatment-box"></li>')
+      .attr('id', treatment.id);
+
+  // --- build box for treatment
+  let header = box.header.text(treatment.name).addClass('treatment-item treatment-name');
+  let description = box.description.text(treatment.description).addClass('treatment-item treatment-description');
+  let footer = box.footer.text(`area: ${treatment.area} | time: ${treatment.time} min(s) | price: ${treatment.price}pln`);
+  let content = box.buildContent(header, description, footer);
+  const div = $(`<div class="order"></div>`);
+  //box.find(".box-content").append(div);
+  
+
+  let image = box.image;
 
 
-    li.click(addTreatmentToCart);
- 
-    return li;
+  li.append(box.buildBox(image, content));  
+  li.find(".box-content").append(div);
+
+  // --- events start ---
+  const addTreatmentToCart = function() {
+      cart.add('treatments', treatment);
+  }
+  li.click(addTreatmentToCart);
+  
+  // --- return ---
+  return li;
 };
-

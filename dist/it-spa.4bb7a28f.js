@@ -24776,7 +24776,79 @@ var roomsService = {
   }
 };
 exports.roomsService = roomsService;
-},{}],"src/views/rooms/rooms-list-item.js":[function(require,module,exports) {
+},{}],"src/components/box.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Box = void 0;
+
+var _jquery = _interopRequireDefault(require("jquery"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Box = /*#__PURE__*/function () {
+  function Box() {
+    _classCallCheck(this, Box);
+
+    this.init();
+  }
+
+  _createClass(Box, [{
+    key: "init",
+    value: function init() {
+      this.box = (0, _jquery.default)("<div class=\"box\"></box>");
+      this.image = (0, _jquery.default)("\n        <div class=\"box-image\">\n            <a href=\"\">box-image-1</a>\n        </div>");
+      this.content = (0, _jquery.default)("<div class=\"box-content\"></div>");
+      this.header = (0, _jquery.default)("<div class=\"box-content-header\"></div>");
+      this.description = (0, _jquery.default)("<div class=\"box-content-description\"></div>");
+      this.footer = (0, _jquery.default)("<div class=\"box-content-footer\"></div>");
+    }
+  }, {
+    key: "buildContent",
+    value: function buildContent(header, descr, footer) {
+      this.content.append(header).append(descr).append(footer);
+      return this.content;
+    }
+  }, {
+    key: "buildBox",
+    value: function buildBox(image, content) {
+      this.box.append(this.image).append(this.buildContent());
+      return this.box;
+    }
+  }]);
+
+  return Box;
+}();
+
+exports.Box = Box;
+; // export const Box = () => {
+//     // --- create box structure ---
+//     const box = $(`<div class="box"></box>`);
+//     const boxImage = $(`
+//     <div class="box-image">
+//       <a href="">box-image-1</a>
+//     </div>`);
+//     const boxContent = $(`<div class="box-content"></div>`);
+//     const boxHeader = $(`<div class="box-content-header"></div>`);
+//     const boxDescription = $(`<div class="box-content-description"></div>`);
+//     const boxFooter = $(`<div class="box-content-footer"></div>`);
+//     boxContent.append(boxHeader).append(boxDescription).append(boxFooter);
+//     box.append(boxImage).append(boxContent);
+//     // --- box events ---
+//     box.click( () => {
+//         console.log('jestem box');
+//     });
+//     return box;
+// };
+},{"jquery":"node_modules/jquery/dist/jquery.js"}],"src/views/rooms/rooms-list-item.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -24788,28 +24860,39 @@ var _jquery = _interopRequireDefault(require("jquery"));
 
 var _cart = require("../../cart/cart");
 
+var _box = require("../../components/box");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var cart = new _cart.Cart();
 
 var roomsListItem = function roomsListItem(room) {
-  var li = (0, _jquery.default)('<li class="list-group-item roomRow"></li>');
-  var name = (0, _jquery.default)('<span></span>').text(room.name).addClass('roomItem');
-  var beds = (0, _jquery.default)('<span></span>').text(room.beds).addClass('roomItem');
-  var guests = (0, _jquery.default)('<span></span>').text(room.guests).addClass('roomItem');
-  var price = (0, _jquery.default)('<span></span>').text(room.price + ' PLN').addClass('roomItem');
-  li.append(name).append(beds).append(guests).append(price);
+  var box = new _box.Box();
+  var li = (0, _jquery.default)('<li class="room-box"></li>'); // --- build box for room
+
+  var header = box.header.text(room.name).addClass('room-item room-name');
+  var description = box.description.text(room.description).addClass('room-item room-description');
+  var footer = box.footer.text("beds: ".concat(room.beds, " | guests: ").concat(room.guests, " | price: ").concat(room.price, "pln"));
+  var content = box.buildContent(header, description, footer);
+  var image = box.image;
+  li.append(box.buildBox(image, content)); // --- events start ---
 
   var addRoomToCart = function addRoomToCart() {
     cart.add('rooms', room);
   };
 
-  li.click(addRoomToCart);
+  li.click(addRoomToCart); //--- return ---
+
   return li;
-};
+}; // let name = $('<span></span>').text(room.name).addClass('roomItem');
+// let beds = $('<span></span>').text(room.beds).addClass('roomItem');
+// let guests = $('<span></span>').text(room.guests).addClass('roomItem');
+// let price = $('<span></span>').text(room.price + ' pln').addClass('roomItem');
+// li.append(name).append(beds).append(guests).append(price);
+
 
 exports.roomsListItem = roomsListItem;
-},{"jquery":"node_modules/jquery/dist/jquery.js","../../cart/cart":"src/cart/cart.js"}],"src/views/rooms/rooms-list.js":[function(require,module,exports) {
+},{"jquery":"node_modules/jquery/dist/jquery.js","../../cart/cart":"src/cart/cart.js","../../components/box":"src/components/box.js"}],"src/views/rooms/rooms-list.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -24826,7 +24909,7 @@ var _roomsListItem = require("./rooms-list-item");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var roomsList = function roomsList() {
-  var ul = (0, _jquery.default)('<ul class="list-group"></ul>'); // doczepia liste pokoi, gdy tylko przyjdzie z serwera
+  var ul = (0, _jquery.default)('<ul id="roomss-list" class="list-group"></ul>'); // doczepia liste pokoi, gdy tylko przyjdzie z serwera
 
   _roomsService.roomsService.getRooms().then(function (rooms) {
     return rooms.map(function (room) {
@@ -24879,16 +24962,48 @@ var _roomsList = require("../views/rooms/rooms-list");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Button = function Button() {
-  var btn = (0, _jquery.default)('<button class="rooms-btn btn-default btn bg-dark text-light"> Submit </button>');
-  btn.click(function () {
-    console.log('jestem btn');
-    var fragment = (0, _jquery.default)(new DocumentFragment());
-    fragment.append((0, _roomsList.roomsList)());
-    return fragment;
-  });
-  return btn;
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+// export const Button = () => {
+//     const btn = $('<button class="rooms-btn btn-default btn bg-dark text-light"> Submit </button>');
+//     btn.click( () => {
+//         console.log('jestem btn');
+//         const fragment = $(new DocumentFragment());
+//         fragment.append(roomsList());
+//         return fragment;
+//     });
+//     return btn;
+// };
+var Button = /*#__PURE__*/function () {
+  function Button(id) {
+    _classCallCheck(this, Button);
+
+    this.init();
+    return this.btn;
+  }
+
+  _createClass(Button, [{
+    key: "init",
+    value: function init(id) {
+      this.btn = (0, _jquery.default)("<button class=\"btn btn-default bg-dark text-light\"> Submit </button>");
+      this.btn.attr("id", id);
+    } // click(elem) {
+    //     if(this.btn.attr("id") == "show-rooms-list") {
+    //         console.log('jestem btn dla show-rooms-list');
+    //         elem.append(roomsList());
+    //         return elem;
+    //     }else return 0;
+    // }
+
+  }]);
+
+  return Button;
+}(); // end of class
+
 
 exports.Button = Button;
 },{"jquery":"node_modules/jquery/dist/jquery.js","../views/rooms/rooms-list":"src/views/rooms/rooms-list.js"}],"src/views/rooms/rooms.js":[function(require,module,exports) {
@@ -24911,8 +25026,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var rooms = function rooms() {
   var fragment = (0, _jquery.default)(new DocumentFragment());
-  fragment.append(_input.Input).append((0, _roomsList.roomsList)()).append(_button.Button); //.append(roomsList())
+  var btn = new _button.Button("show-rooms-list");
+  var jumbotron = (0, _jquery.default)("\n  <div class=\"jumbotron\">\n    <div class=\"container\">\n      <p> Please, select proper date range to find available rooms for booking: </p> \n      \n    </div>\n  </div>");
+  jumbotron.find(".container").append(_input.Input).append(btn);
+  var rlist = (0, _jquery.default)("<div class='rooms-list'></div>"); //fragment.append(jumbotron);
 
+  fragment.append(jumbotron).append(rlist);
+  btn.click(function () {
+    rlist.append((0, _roomsList.roomsList)());
+  });
   return fragment;
 };
 
@@ -24949,28 +25071,37 @@ var _jquery = _interopRequireDefault(require("jquery"));
 
 var _cart = require("../../cart/cart");
 
+var _box = require("../../components/box");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var cart = new _cart.Cart();
 
 var treatmentsListItem = function treatmentsListItem(treatment) {
-  var li = (0, _jquery.default)('<li class="list-group-item treatmentRow"></li>').attr('id', treatment.id);
-  var name = (0, _jquery.default)('<span></span>').text(treatment.name).addClass('treatmentItem treatment-name');
-  var area = (0, _jquery.default)('<span></span>').text(treatment.area).addClass('treatmentItem treatment-area');
-  var time = (0, _jquery.default)('<span></span>').text(treatment.time + ' min').addClass('treatmentItem treatment-time');
-  var price = (0, _jquery.default)('<span></span>').text(treatment.price + ' PLN').addClass('treatmentItem treatment-price');
-  li.append(name).append(area).append(time).append(price);
+  var box = new _box.Box();
+  var li = (0, _jquery.default)('<li class="treatment-box"></li>').attr('id', treatment.id); // --- build box for treatment
+
+  var header = box.header.text(treatment.name).addClass('treatment-item treatment-name');
+  var description = box.description.text(treatment.description).addClass('treatment-item treatment-description');
+  var footer = box.footer.text("area: ".concat(treatment.area, " | time: ").concat(treatment.time, " min(s) | price: ").concat(treatment.price, "pln"));
+  var content = box.buildContent(header, description, footer);
+  var div = (0, _jquery.default)("<div class=\"order\"></div>"); //box.find(".box-content").append(div);
+
+  var image = box.image;
+  li.append(box.buildBox(image, content));
+  li.find(".box-content").append(div); // --- events start ---
 
   var addTreatmentToCart = function addTreatmentToCart() {
     cart.add('treatments', treatment);
   };
 
-  li.click(addTreatmentToCart);
+  li.click(addTreatmentToCart); // --- return ---
+
   return li;
 };
 
 exports.treatmentsListItem = treatmentsListItem;
-},{"jquery":"node_modules/jquery/dist/jquery.js","../../cart/cart":"src/cart/cart.js"}],"src/views/treatments/treatments-list.js":[function(require,module,exports) {
+},{"jquery":"node_modules/jquery/dist/jquery.js","../../cart/cart":"src/cart/cart.js","../../components/box":"src/components/box.js"}],"src/views/treatments/treatments-list.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -24987,7 +25118,7 @@ var _treatmentsListItem = require("./treatments-list-item");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var treatmentsList = function treatmentsList() {
-  var ul = (0, _jquery.default)('<ul class="list-group"></ul>');
+  var ul = (0, _jquery.default)('<ul id="treatments-list" class="list-group"></ul>');
 
   _treatmentsService.treatmentsService.getTreatments().then(function (treatments) {
     return treatments.map(function (treatment) {
@@ -25017,7 +25148,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var treatments = function treatments() {
   var fragment = (0, _jquery.default)(new DocumentFragment());
-  fragment.append('<h2>Treatments</h2>').append((0, _treatmentsList.treatmentsList)()).append('<p>Lorem ipsum dolor sit amet...</p>');
+  var jumbotron = (0, _jquery.default)("\n  <div class=\"jumbotron\">\n    <div class=\"container\">\n      <h4> Treatments list </h4> \n      <p> Below you can select a treatment and add it to the cart. \n          Fill free to read a description and select treatment which apply to your needs\n      </p>\n    </div>\n  </div>");
+  fragment.append(jumbotron).append((0, _treatmentsList.treatmentsList)());
   return fragment;
 };
 
@@ -25330,7 +25462,7 @@ var nav = function nav() {
     (0, _jquery.default)(".cart-content").append(cartList);
   });
   (0, _jquery.default)('body').on("click", function () {
-    navbar.find('.cart-counter').text('Cart : ' + cart.getLength() + ' item(s)');
+    navbar.find('.cart-btn').text('Cart : ' + cart.getLength() + ' item(s)');
     (0, _jquery.default)(".cart-content").text("");
     (0, _jquery.default)(".cart-content").append(cartList);
   }); //$(".cart-content").on("hover", cartList);
@@ -25389,7 +25521,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61953" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49966" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

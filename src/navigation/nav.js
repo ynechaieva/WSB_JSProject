@@ -70,7 +70,7 @@ export const nav = () => {
   });
  
   $('body').on( "click", function(){
-    navbar.find('.cart-counter').text('Cart : ' + cart.getLength() + ' item(s)');
+    navbar.find('.cart-btn').text('Cart : ' + cart.getLength() + ' item(s)');
     $(".cart-content").text("");
     $(".cart-content").append(cartList);
   });
