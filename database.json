@@ -7,7 +7,8 @@
       "beds": 1,
       "guests": 1,
       "price": 170,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "img": ""
     },
     {
       "id": 2,
@@ -15,7 +16,8 @@
       "beds": 1,
       "guests": 2,
       "price": 240,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "img": ""
     },
     {
       "id": 3,
@@ -23,7 +25,8 @@
       "beds": 2,
       "guests": 3,
       "price": 290,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "img": ""
     },
     {
       "id": 4,
@@ -31,7 +34,8 @@
       "beds": 2,
       "guests": 4,
       "price": 340,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "img": ""
     }
   ],
   "treatments": [
@@ -41,7 +45,9 @@
       "area": "back",
       "time": 30,
       "price": 80,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "img": "https://images.unsplash.com/photo-1589030453049-d390d6004e87?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+    
     },
     {
       "id": 2,
@@ -49,7 +55,8 @@
       "area": "back",
       "time": 20,
       "price": 70,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "img": "https://images.unsplash.com/photo-1589009649715-641c60b982ae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
     },
     {
       "id": 3,
@@ -57,7 +64,8 @@
       "area": "face",
       "time": 15,
       "price": 50,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "img": "https://images.unsplash.com/photo-1588774583125-bac783343696?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
     },
     {
       "id": 4,
@@ -65,7 +73,8 @@
       "area": "legs",
       "time": 25,
       "price": 100,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "img": "https://images.unsplash.com/photo-1589030453067-8f5402e70371?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
     },
     {
       "id": 5,
@@ -73,7 +82,8 @@
       "area": "hands",
       "time": 45,
       "price": 150,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "img": "https://images.unsplash.com/photo-1586036024758-8adad127a203?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
     },
     {
       "id": 6,
@@ -81,7 +91,8 @@
       "area": "body",
       "time": 60,
       "price": 200,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "img": "https://images.unsplash.com/photo-1586518140961-690f883cf838?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
     },
     {
       "id": 7,
@@ -89,7 +100,8 @@
       "area": "body",
       "time": 45,
       "price": 120,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "img": "https://images.unsplash.com/photo-1586928442277-11eae06d361d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
     }
   ]
 }

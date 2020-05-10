@@ -24805,7 +24805,7 @@ var Box = /*#__PURE__*/function () {
     key: "init",
     value: function init() {
       this.box = (0, _jquery.default)("<div class=\"box\"></box>");
-      this.image = (0, _jquery.default)("\n        <div class=\"box-image\">\n            <a href=\"\">box-image-1</a>\n        </div>");
+      this.image = (0, _jquery.default)("\n        <div class=\"box-image\">\n            <img src=\"\" alt=\"image-1\"/>\n        </div>");
       this.content = (0, _jquery.default)("<div class=\"box-content\"></div>");
       this.header = (0, _jquery.default)("<div class=\"box-content-header\"></div>");
       this.description = (0, _jquery.default)("<div class=\"box-content-description\"></div>");
@@ -24820,7 +24820,7 @@ var Box = /*#__PURE__*/function () {
   }, {
     key: "buildBox",
     value: function buildBox(image, content) {
-      this.box.append(this.image).append(this.buildContent());
+      this.box.append(image).append(this.buildContent());
       return this.box;
     }
   }]);
@@ -25081,21 +25081,22 @@ var treatmentsListItem = function treatmentsListItem(treatment) {
   var box = new _box.Box();
   var li = (0, _jquery.default)('<li class="treatment-box"></li>').attr('id', treatment.id); // --- build box for treatment
 
+  var image = box.image.addClass("treatment-image");
+  image.find('img').attr('src', treatment.img);
+  console.log(treatment.img);
   var header = box.header.text(treatment.name).addClass('treatment-item treatment-name');
   var description = box.description.text(treatment.description).addClass('treatment-item treatment-description');
   var footer = box.footer.text("area: ".concat(treatment.area, " | time: ").concat(treatment.time, " min(s) | price: ").concat(treatment.price, "pln"));
   var content = box.buildContent(header, description, footer);
-  var div = (0, _jquery.default)("<div class=\"order\"></div>"); //box.find(".box-content").append(div);
-
-  var image = box.image;
+  var orderBtn = (0, _jquery.default)("<div class=\"treatment-order-btn\"></div>");
   li.append(box.buildBox(image, content));
-  li.find(".box-content").append(div); // --- events start ---
+  li.find(".box-content").append(orderBtn); // --- events ---
 
   var addTreatmentToCart = function addTreatmentToCart() {
     cart.add('treatments', treatment);
   };
 
-  li.click(addTreatmentToCart); // --- return ---
+  orderBtn.click(addTreatmentToCart); // --- return ---
 
   return li;
 };
@@ -25521,7 +25522,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49966" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51265" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

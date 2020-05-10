@@ -1,0 +1,36 @@
+.room-item {
+    margin-right: 40px;
+}
+
+.room-box {
+    //width: 25rem;
+    //height: 20rem;
+    position: relative;
+    box-shadow: 0px 8px 10px 0px rgba(0,0,0,0.2);
+    border-radius: 1%;
+    padding: 1rem;
+}
+
+#rooms-list li {
+    display: inline;
+    margin: 0 0 2rem 0;
+}
+
+#rooms-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+
+.roomRow:nth-child(odd) {
+    background-color: #f18973;
+}
+
+.roomRow:nth-child(even) {
+    background-color: #f4e1d2;
+}
+
+.simple-input {
+    margin: 15px;
+}

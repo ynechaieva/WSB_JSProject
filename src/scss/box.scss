@@ -1,0 +1,14 @@
+.box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.box-image {
+    flex-shrink: 3;
+}
+
+.box-content-footer {
+    bottom: 0;
+    width: 100%;
+}

@@ -10,7 +10,7 @@ export class Box {
         this.box = $(`<div class="box"></box>`);
         this.image = $(`
         <div class="box-image">
-            <a href="">box-image-1</a>
+            <img src="" alt="image-1"/>
         </div>`);
 
         this.content = $(`<div class="box-content"></div>`);
@@ -25,7 +25,7 @@ export class Box {
     }
 
     buildBox(image, content) {
-        this.box.append(this.image).append(this.buildContent());
+        this.box.append(image).append(this.buildContent());
         return this.box;
     }
 };

@@ -1,0 +1,44 @@
+.treatment-item {
+    margin-right: 40px;
+}
+
+.treatment-box {
+    width: 30rem;
+    height: 35rem;
+    box-shadow: 0px 8px 10px 0px rgba(0,0,0,0.2);
+    border-radius: 1%;
+    padding: 1rem;
+    background-color: whitesmoke;
+    &:hover .box .box-content .treatment-order-btn {
+        height: 4rem;
+    }
+}
+
+#treatments-list li {
+    display: inline;
+    margin: 0 0 2rem 0;
+}
+
+#treatments-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.treatment-order-btn {
+    width: 100%;
+    background-color: lightyellow;
+}
+
+.treatment-image img{
+    height: 100%;
+    width: 100%;
+    //display: block;
+}
+
+// .treatment-box:nth-child(odd) {
+//     background-color: whitesmoke;
+// }
+// .treatment-box:nth-child(even) {
+//     background-color: whitesmoke;
+// }
