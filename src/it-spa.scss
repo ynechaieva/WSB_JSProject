@@ -6,6 +6,7 @@
 @import './scss/rooms.scss';
 @import './scss/cart.scss';
 @import './scss//box.scss';
+@import './scss//home.scss';
 
 
 * {
@@ -13,10 +14,39 @@
     padding: 0;
     box-sizing: border-box;
     font-size: 15px;
+    
   }
 
-a {
-    display:block;
+body {
+    min-height: 100vh;
+    position: relative;
+    //background-image: url("https://images.unsplash.com/photo-1583142262134-ea013f83bbb2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=60");
+    background-image: url("https://images.unsplash.com/photo-1566125618135-8063e23d8e4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80");
+    background-size: cover;
+    z-index: -10;
+    opacity: 0.9;
+}
+
+main {
+    //margin: 0 0 3rem;
+    min-height: 83vh;
+
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3rem;
+    width: 100%;
+    padding: 1rem 0 0 0;
+}
+
+.jumbotron-rooms, 
+.jumbotron-treatments {
+    height: 8rem;
+    padding-top: 2rem;
+    padding-left: 1rem;
 }
 
 .navbar-brand {

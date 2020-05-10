@@ -60,8 +60,7 @@
 
 .div_hover {
     color: gray;
-}
-
-.div_hover:hover {
-    color: orangered;
+    &:hover {
+        color: orangered;
+    }
 }

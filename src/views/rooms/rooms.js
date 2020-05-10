@@ -10,7 +10,7 @@ export const rooms = () => {
   const fragment = $(new DocumentFragment());
   const btn = new Button("show-rooms-list");
   const jumbotron = $(`
-  <div class="jumbotron">
+  <div class="jumbotron jumbotron-rooms">
     <div class="container">
       <p> Please, select proper date range to find available rooms for booking: </p> 
       

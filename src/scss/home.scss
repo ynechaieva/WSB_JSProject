@@ -1,0 +1,27 @@
+.jumbotron-home {
+    opacity: 0.9;
+    height: 20rem;
+
+}
+
+.container-home {
+    padding: 2rem;
+}
+
+.home-show-details {
+    color: gray;
+    font-size: small;
+
+    &:hover {
+        color: blue;
+    }
+
+    &:active {
+        color: orangered;
+    }
+
+}
+
+.home-columns-container {
+    display: none;
+}

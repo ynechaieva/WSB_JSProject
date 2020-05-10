@@ -4,7 +4,7 @@ import { treatmentsList } from './treatments-list';
 export const treatments = () => {
   const fragment = $(new DocumentFragment());
   const jumbotron = $(`
-  <div class="jumbotron">
+  <div class="jumbotron jumbotron-treatments">
     <div class="container">
       <h4> Treatments list </h4> 
       <p> Below you can select a treatment and add it to the cart. 

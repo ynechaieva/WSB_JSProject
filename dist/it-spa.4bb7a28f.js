@@ -24748,8 +24748,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var home = function home() {
   var fragment = (0, _jquery.default)(new DocumentFragment());
-  var homePage = (0, _jquery.default)("\n    <div class=\"jumbotron\">\n      <div class=\"container\">\n        <h1 class='greetings'>Hello, world!</h1>      \n        <p>\n          This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. \n          Use it as a starting point to create something more unique.\n        </p>\n        <p>\n          <a href=\"#\">Lern more >></a>\n        </p>\n      </div>\n    </div>\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class='col-md-4'>\n\n        </div>\n      </div>\n    </div>");
+  var homePage = (0, _jquery.default)("\n    <div class=\"jumbotron jumbotron-home\">\n      <div class=\"container-home\">\n        <h1 class='greetings'>Hello, there!</h1>      \n        <p class=\"home-p\">\n          This is first IT&SPA in the world. \n          We afford unique and very specific services which allow you relax and have fun alltogather.\n          Fill free to join us and explore the new world of joy and happiness.\n        </p>\n        <p>\n          <span class=\"home-show-details\">Show details >></span>\n        </p>\n      </div>\n    </div>\n    <div class=\"home-columns-container container\">\n      <div class=\"row\">\n        <div class=\"col\"> Column 1 of 2 </div>\n        <div class=\"col\"> Column 2 of 2 </div>\n      </div>\n    </div>\n    ");
   fragment.append(homePage);
+
+  var showDetails = function showDetails() {
+    var text = (0, _jquery.default)(this).html();
+    (0, _jquery.default)(".home-columns-container").toggle();
+
+    if (text.replace('&gt;&gt;', '>>') == "Show details >>") {
+      text = "Hide details >>";
+      (0, _jquery.default)(this).text(text);
+    } else (0, _jquery.default)(this).text("Show details >>");
+  };
+
+  homePage.find(".home-show-details").click(showDetails);
   return fragment;
 };
 
@@ -25027,7 +25039,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var rooms = function rooms() {
   var fragment = (0, _jquery.default)(new DocumentFragment());
   var btn = new _button.Button("show-rooms-list");
-  var jumbotron = (0, _jquery.default)("\n  <div class=\"jumbotron\">\n    <div class=\"container\">\n      <p> Please, select proper date range to find available rooms for booking: </p> \n      \n    </div>\n  </div>");
+  var jumbotron = (0, _jquery.default)("\n  <div class=\"jumbotron jumbotron-rooms\">\n    <div class=\"container\">\n      <p> Please, select proper date range to find available rooms for booking: </p> \n      \n    </div>\n  </div>");
   jumbotron.find(".container").append(_input.Input).append(btn);
   var rlist = (0, _jquery.default)("<div class='rooms-list'></div>"); //fragment.append(jumbotron);
 
@@ -25149,7 +25161,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var treatments = function treatments() {
   var fragment = (0, _jquery.default)(new DocumentFragment());
-  var jumbotron = (0, _jquery.default)("\n  <div class=\"jumbotron\">\n    <div class=\"container\">\n      <h4> Treatments list </h4> \n      <p> Below you can select a treatment and add it to the cart. \n          Fill free to read a description and select treatment which apply to your needs\n      </p>\n    </div>\n  </div>");
+  var jumbotron = (0, _jquery.default)("\n  <div class=\"jumbotron jumbotron-treatments\">\n    <div class=\"container\">\n      <h4> Treatments list </h4> \n      <p> Below you can select a treatment and add it to the cart. \n          Fill free to read a description and select treatment which apply to your needs\n      </p>\n    </div>\n  </div>");
   fragment.append(jumbotron).append((0, _treatmentsList.treatmentsList)());
   return fragment;
 };
@@ -25522,7 +25534,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51265" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57984" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

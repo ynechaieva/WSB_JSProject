@@ -10736,9 +10736,8 @@ a.text-dark:hover, a.text-dark:focus {
 
 .div_hover {
   color: gray; }
-
-.div_hover:hover {
-  color: orangered; }
+  .div_hover:hover {
+    color: orangered; }
 
 .box {
   display: flex;
@@ -10752,14 +10751,54 @@ a.text-dark:hover, a.text-dark:focus {
   bottom: 0;
   width: 100%; }
 
+.jumbotron-home {
+  opacity: 0.9;
+  height: 20rem; }
+
+.container-home {
+  padding: 2rem; }
+
+.home-show-details {
+  color: gray;
+  font-size: small; }
+  .home-show-details:hover {
+    color: blue; }
+  .home-show-details:active {
+    color: orangered; }
+
+.home-columns-container {
+  display: none; }
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-size: 15px; }
 
-a {
-  display: block; }
+body {
+  min-height: 100vh;
+  position: relative;
+  background-image: url("https://images.unsplash.com/photo-1566125618135-8063e23d8e4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80");
+  background-size: cover;
+  z-index: -10;
+  opacity: 0.9; }
+
+main {
+  min-height: 83vh; }
+
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3rem;
+  width: 100%;
+  padding: 1rem 0 0 0; }
+
+.jumbotron-rooms,
+.jumbotron-treatments {
+  height: 8rem;
+  padding-top: 2rem;
+  padding-left: 1rem; }
 
 .navbar-brand {
   font-size: medium; }
