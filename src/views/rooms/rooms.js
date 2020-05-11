@@ -25,10 +25,6 @@ export const rooms = () => {
   const rlist = $(`<div class='rooms-list'></div>`);
 
   fragment.append(jumbotron).append(rlist);
-  
-  btn.click( () => {
-    rlist.append(roomsList());
-  });
 
   return fragment;
 };

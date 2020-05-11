@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import 'daterangepicker';
+import { roomsList } from '../rooms-list';
 
 export const Daterangepicker = () => {
     const input = $(`<input id="daterange" value="" class="input-daterange"/>`);
@@ -11,9 +12,20 @@ export const Daterangepicker = () => {
 
     input.daterangepicker({
         minDate: now,
-        maxDate: oneYearFromNow
+        maxDate: oneYearFromNow,
+        //locale: { cancelLabel: 'Clear' }
     });
     input.val("");  
+
+    input.on('cancel.daterangepicker', function(ev, picker){
+        input.val("");
+    });
+
+    input.on('apply.daterangepicker', function(ev, picker) {
+        //console.log(picker.startDate.format('YYYY-MM-DD'));
+        //console.log(picker.endDate.format('YYYY-MM-DD'));
+        $(".rooms-list").append(roomsList());
+      });
 
     return input;
 };

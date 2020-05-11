@@ -24947,6 +24947,8 @@ var _jquery = _interopRequireDefault(require("jquery"));
 
 require("daterangepicker");
 
+var _roomsList = require("../rooms-list");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Daterangepicker = function Daterangepicker() {
@@ -24957,14 +24959,23 @@ var Daterangepicker = function Daterangepicker() {
   oneYearFromNow.setFullYear(now.getFullYear() + 1);
   input.daterangepicker({
     minDate: now,
-    maxDate: oneYearFromNow
+    maxDate: oneYearFromNow //locale: { cancelLabel: 'Clear' }
+
   });
   input.val("");
+  input.on('cancel.daterangepicker', function (ev, picker) {
+    input.val("");
+  });
+  input.on('apply.daterangepicker', function (ev, picker) {
+    //console.log(picker.startDate.format('YYYY-MM-DD'));
+    //console.log(picker.endDate.format('YYYY-MM-DD'));
+    (0, _jquery.default)(".rooms-list").append((0, _roomsList.roomsList)());
+  });
   return input;
 };
 
 exports.Daterangepicker = Daterangepicker;
-},{"jquery":"node_modules/jquery/dist/jquery.js","daterangepicker":"node_modules/daterangepicker/daterangepicker.js"}],"src/components/button.js":[function(require,module,exports) {
+},{"jquery":"node_modules/jquery/dist/jquery.js","daterangepicker":"node_modules/daterangepicker/daterangepicker.js","../rooms-list":"src/views/rooms/rooms-list.js"}],"src/components/button.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -24984,16 +24995,6 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-// export const Button = () => {
-//     const btn = $('<button class="rooms-btn btn-default btn bg-dark text-light"> Submit </button>');
-//     btn.click( () => {
-//         console.log('jestem btn');
-//         const fragment = $(new DocumentFragment());
-//         fragment.append(roomsList());
-//         return fragment;
-//     });
-//     return btn;
-// };
 var Button = /*#__PURE__*/function () {
   function Button(id) {
     _classCallCheck(this, Button);
@@ -25048,9 +25049,6 @@ var rooms = function rooms() {
   jumbotron.find(".container").append(drp);
   var rlist = (0, _jquery.default)("<div class='rooms-list'></div>");
   fragment.append(jumbotron).append(rlist);
-  btn.click(function () {
-    rlist.append((0, _roomsList.roomsList)());
-  });
   return fragment;
 };
 
