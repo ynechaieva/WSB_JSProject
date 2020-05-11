@@ -13,7 +13,6 @@ export const Daterangepicker = () => {
     input.daterangepicker({
         minDate: now,
         maxDate: oneYearFromNow,
-        //locale: { cancelLabel: 'Clear' }
     });
     input.val("");  
 

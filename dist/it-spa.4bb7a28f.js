@@ -24959,8 +24959,7 @@ var Daterangepicker = function Daterangepicker() {
   oneYearFromNow.setFullYear(now.getFullYear() + 1);
   input.daterangepicker({
     minDate: now,
-    maxDate: oneYearFromNow //locale: { cancelLabel: 'Clear' }
-
+    maxDate: oneYearFromNow
   });
   input.val("");
   input.on('cancel.daterangepicker', function (ev, picker) {
