@@ -8,7 +8,7 @@ import { Button } from '../../components/button';
 export const rooms = () => {
 
   const drp = Daterangepicker;
-  const btn = new Button("show-rooms-list");
+  //const btn = new Button("show-rooms-list");
   const fragment = $(new DocumentFragment());
   
   const jumbotron = $(`
@@ -22,7 +22,8 @@ export const rooms = () => {
   
   
   jumbotron.find(".container").append(drp);
-  const rlist = $(`<div class='rooms-list'></div>`);
+  const rlist = $(`<div class='global-rooms-list'></div>`);
+  rlist.append(roomsList);
 
   fragment.append(jumbotron).append(rlist);
 

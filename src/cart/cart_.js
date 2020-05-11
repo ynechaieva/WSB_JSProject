@@ -23,7 +23,7 @@ export class Cart {
         // 'IT_SPA_CART=wartosc'
         const itSpaCookie = this.cookie(); // 'IT_SPA_CART={rooms:[], treatments:[]}'
         console.log(itSpaCookie);
-
+        //console.log(itSpaCookie);
         const cookiesObj = JSON.parse(itSpaCookie.split('=')[1]);
         return cookiesObj;
       } else {
@@ -34,9 +34,11 @@ export class Cart {
     add(type, value) {
         const cookiesObj = this.get();
         if(type == 'treatments'){
+         //   const cartTreatments = cookiesObj.treatments;
             cookiesObj.treatments.push(value);
         } else if(type == 'rooms') {
-            cookiesObj.rooms.push(value);
+            const cartRooms = cookiesObj.rooms;
+            cartRooms.push(value);
         }
      
         const stringifiedValue = JSON.stringify(cookiesObj);

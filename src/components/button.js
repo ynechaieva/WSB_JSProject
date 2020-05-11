@@ -4,7 +4,7 @@ import { roomsList } from '../views/rooms/rooms-list';
 export class Button {
 
     constructor(id) {
-        this.init();
+        this.init(id);
         return this.btn;
     }
 

@@ -1,3 +1,10 @@
+.jumbotron-treatments {
+    height: 11rem;
+    padding-top: 2rem;
+    padding-left: 3rem;
+    opacity: 0.9;
+}
+
 .treatment-item {
     margin-right: 40px;
 }
@@ -36,6 +43,21 @@
     //display: block;
 }
 
+
+.box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.box-image {
+    flex-shrink: 3;
+}
+
+.box-content-footer {
+    bottom: 0;
+    width: 100%;
+}
 // .treatment-box:nth-child(odd) {
 //     background-color: whitesmoke;
 // }

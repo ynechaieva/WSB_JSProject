@@ -1,5 +1,6 @@
 //@import '../node_modules/font-awesome/scss/font-awesome.scss';
 
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 @import '../node_modules/daterangepicker/daterangepicker.css';
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 @import './scss/treatments.scss';
@@ -31,14 +32,6 @@ html, body {
    padding: 0.2rem 0.2rem;
 }
 
-.jumbotron-rooms, 
-.jumbotron-treatments {
-    height: 11rem;
-    padding-top: 2rem;
-    padding-left: 3rem;
-    opacity: 0.9;
-}
-
 .navbar-brand {
     font-size: medium;
 }
@@ -48,4 +41,3 @@ ul {
     margin: 0;
     padding: 0;
 }
-
