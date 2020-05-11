@@ -24748,7 +24748,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var home = function home() {
   var fragment = (0, _jquery.default)(new DocumentFragment());
-  var homePage = (0, _jquery.default)("\n    <div class=\"jumbotron jumbotron-home\">\n      <div class=\"container-home\">\n        <h1 class='greetings'>Hello, there!</h1>      \n        <p class=\"home-p\">\n          This is first IT&SPA in the world. \n          We afford unique and very specific services which allow you relax and have fun alltogather.\n          Fill free to join us and explore the new world of joy and happiness.\n        </p>\n        <p>\n          <span class=\"home-show-details\">Show details >></span>\n        </p>\n      </div>\n    </div>\n    <div class=\"home-columns-container container\">\n      <div class=\"row\">\n        <div class=\"col\"> Column 1 of 2 </div>\n        <div class=\"col\"> Column 2 of 2 </div>\n      </div>\n    </div>\n    ");
+  var homePage = (0, _jquery.default)("\n      <div class=\"jumbotron jumbotron-home\">\n          <h1 class='greetings'>Hello, there!</h1>      \n          <p class=\"home-p\">\n            This is first IT&SPA in the world. \n            We afford unique and very specific services which allow you relax and have fun alltogather.\n          </p>\n          <p>Fill free to join us and explore the new world of joy and happiness.</p>\n          <p> <span class=\"home-show-details\">Show details >></span> </p>\n      </div>\n\n      <div class=\"home-columns-container container\">\n        <div class=\"row details-headers \">\n          <div class=\"col\">\n            <h3>Rooms</h3>\n            <p>We offer different rooms in modern design to make your stay comfortable. </p>\n            <p>You can book rooms for specific date range and spend time with your friens and family or work and relax at the same time</p>\n            <a href=\"/rooms\">more >> </a>\n          </div>\n          <div class=\"col\">\n            <h3>Treatments</h3>\n            <p>In our list you can find different treatments for any needs. </p>\n            <p>List of treatments we offer are very unique, hence you can relax and have fun at the same time</p>\n            <a href=\"/treatments\">more >> </a>\n          </div>\n          <div class=\"col\">\n            <h3>About</h3>\n            <p>This is first project developed by Yevheniia. </p>\n            <p>If you have any suggestions which may help improve the project, please, send you thoughts on email ynechaieva@outlook.com</p>\n          </div>\n        </div>\n      </div>\n    ");
   fragment.append(homePage);
 
   var showDetails = function showDetails() {
@@ -24935,13 +24935,13 @@ var roomsList = function roomsList() {
 };
 
 exports.roomsList = roomsList;
-},{"jquery":"node_modules/jquery/dist/jquery.js","../../common/rooms-service":"src/common/rooms-service.js","./rooms-list-item":"src/views/rooms/rooms-list-item.js"}],"src/views/rooms/calendar/input.js":[function(require,module,exports) {
+},{"jquery":"node_modules/jquery/dist/jquery.js","../../common/rooms-service":"src/common/rooms-service.js","./rooms-list-item":"src/views/rooms/rooms-list-item.js"}],"src/views/rooms/calendar/daterangepicker.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Input = void 0;
+exports.Daterangepicker = void 0;
 
 var _jquery = _interopRequireDefault(require("jquery"));
 
@@ -24949,17 +24949,21 @@ require("daterangepicker");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Input = function Input() {
-  var ipt = (0, _jquery.default)('<input class="simple-input" />');
-  ipt.daterangepicker(); //$(function() { $("#e1").daterangepicker(); });
+var Daterangepicker = function Daterangepicker() {
+  var input = (0, _jquery.default)("<input id=\"daterange\" value=\"\" class=\"input-daterange\"/>");
+  var now = new Date();
+  var oneYearFromNow = new Date(); //--- calculate one year from current date for calendar ---
 
-  ipt.click(function () {
-    console.log('input is clicked');
+  oneYearFromNow.setFullYear(now.getFullYear() + 1);
+  input.daterangepicker({
+    minDate: now,
+    maxDate: oneYearFromNow
   });
-  return ipt;
+  input.val("");
+  return input;
 };
 
-exports.Input = Input;
+exports.Daterangepicker = Daterangepicker;
 },{"jquery":"node_modules/jquery/dist/jquery.js","daterangepicker":"node_modules/daterangepicker/daterangepicker.js"}],"src/components/button.js":[function(require,module,exports) {
 "use strict";
 
@@ -25030,19 +25034,19 @@ var _jquery = _interopRequireDefault(require("jquery"));
 
 var _roomsList = require("./rooms-list");
 
-var _input = require("./calendar/input");
+var _daterangepicker = require("./calendar/daterangepicker");
 
 var _button = require("../../components/button");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var rooms = function rooms() {
-  var fragment = (0, _jquery.default)(new DocumentFragment());
+  var drp = _daterangepicker.Daterangepicker;
   var btn = new _button.Button("show-rooms-list");
-  var jumbotron = (0, _jquery.default)("\n  <div class=\"jumbotron jumbotron-rooms\">\n    <div class=\"container\">\n      <p> Please, select proper date range to find available rooms for booking: </p> \n      \n    </div>\n  </div>");
-  jumbotron.find(".container").append(_input.Input).append(btn);
-  var rlist = (0, _jquery.default)("<div class='rooms-list'></div>"); //fragment.append(jumbotron);
-
+  var fragment = (0, _jquery.default)(new DocumentFragment());
+  var jumbotron = (0, _jquery.default)("\n  <div class=\"jumbotron jumbotron-rooms\">\n    <div class=\"container\">\n      <h4>Rooms</h4>\n      <p>Please, select proper date range to find available room for booking:</p> \n    </div>\n  </div>");
+  jumbotron.find(".container").append(drp);
+  var rlist = (0, _jquery.default)("<div class='rooms-list'></div>");
   fragment.append(jumbotron).append(rlist);
   btn.click(function () {
     rlist.append((0, _roomsList.roomsList)());
@@ -25051,7 +25055,7 @@ var rooms = function rooms() {
 };
 
 exports.rooms = rooms;
-},{"jquery":"node_modules/jquery/dist/jquery.js","./rooms-list":"src/views/rooms/rooms-list.js","./calendar/input":"src/views/rooms/calendar/input.js","../../components/button":"src/components/button.js"}],"src/common/treatments-service.js":[function(require,module,exports) {
+},{"jquery":"node_modules/jquery/dist/jquery.js","./rooms-list":"src/views/rooms/rooms-list.js","./calendar/daterangepicker":"src/views/rooms/calendar/daterangepicker.js","../../components/button":"src/components/button.js"}],"src/common/treatments-service.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25161,7 +25165,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var treatments = function treatments() {
   var fragment = (0, _jquery.default)(new DocumentFragment());
-  var jumbotron = (0, _jquery.default)("\n  <div class=\"jumbotron jumbotron-treatments\">\n    <div class=\"container\">\n      <h4> Treatments list </h4> \n      <p> Below you can select a treatment and add it to the cart. \n          Fill free to read a description and select treatment which apply to your needs\n      </p>\n    </div>\n  </div>");
+  var jumbotron = (0, _jquery.default)("\n  <div class=\"jumbotron jumbotron-treatments\">\n      <h4> Treatments list </h4> \n      <p> Below you can select a treatment and add it to the cart. \n          Fill free to read a description and select treatment which apply to your needs\n      </p>\n  </div>");
   fragment.append(jumbotron).append((0, _treatmentsList.treatmentsList)());
   return fragment;
 };
@@ -25429,7 +25433,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var cart = new _cart.Cart();
 
 var nav = function nav() {
-  var navbar = (0, _jquery.default)("\n  <nav class=\"navbar navbar-expand-sm bg-dark text-light\">\n    <div class=\"container-fluid\">\n      <span class=\"navbar-brand text-muted\">totEnot |</span>\n      <ul class=\"navbar-nav mr-auto\"></ul>\n      <div class=\"cart-dropdown\">\n        <div class=\"cart-btn bg-dark div_hover\"> Cart : 0 item(s) </div>  \n        <div class=\"cart-content dropdown-menu\"></div>\n      </div>\n    </div>\n  </nav>\n"); // chcemy zbudowac tablice elementow navItem z odpowiednimi nazwami i callbackami
+  var navbar = (0, _jquery.default)("\n  <nav class=\"navbar navbar-expand-sm bg-dark text-light\">\n    <div class=\"container-fluid\">\n      <span class=\"navbar-brand text-muted\">IT&SPA |</span>\n      <ul class=\"navbar-nav mr-auto\"></ul>\n      <div class=\"cart-dropdown\">\n        <div class=\"cart-btn bg-dark div_hover\"> Cart : 0 item(s) </div>  \n        <div class=\"cart-content dropdown-menu\"></div>\n      </div>\n    </div>\n  </nav>\n"); // chcemy zbudowac tablice elementow navItem z odpowiednimi nazwami i callbackami
 
   var navItems = _routes.routes.map(function (route) {
     var name = route.name,

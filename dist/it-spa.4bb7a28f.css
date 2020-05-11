@@ -10694,8 +10694,10 @@ a.text-dark:hover, a.text-dark:focus {
 .roomRow:nth-child(even) {
   background-color: #f4e1d2; }
 
-.simple-input {
-  margin: 15px; }
+.input-daterange {
+  width: 14rem;
+  margin: 0;
+  text-align: center; }
 
 .cart-dropdown {
   position: relative; }
@@ -10753,12 +10755,11 @@ a.text-dark:hover, a.text-dark:focus {
 
 .jumbotron-home {
   opacity: 0.9;
-  height: 20rem; }
-
-.container-home {
-  padding: 2rem; }
+  height: 18rem;
+  padding-left: 5rem; }
 
 .home-show-details {
+  margin-top: 2.5rem;
   color: gray;
   font-size: small; }
   .home-show-details:hover {
@@ -10767,7 +10768,8 @@ a.text-dark:hover, a.text-dark:focus {
     color: orangered; }
 
 .home-columns-container {
-  display: none; }
+  display: none;
+  padding: 2rem 4rem 4rem 4rem; }
 
 * {
   margin: 0;
@@ -10775,30 +10777,23 @@ a.text-dark:hover, a.text-dark:focus {
   box-sizing: border-box;
   font-size: 15px; }
 
-body {
-  min-height: 100vh;
-  position: relative;
+html, body {
+  height: 100%; }
+
+.page-wrapper {
+  min-height: calc(100vh - 5.2rem);
   background-image: url("https://images.unsplash.com/photo-1566125618135-8063e23d8e4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80");
-  background-size: cover;
-  z-index: -10;
-  opacity: 0.9; }
+  background-size: cover; }
 
-main {
-  min-height: 83vh; }
-
-footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 3rem;
-  width: 100%;
-  padding: 1rem 0 0 0; }
+.footer {
+  padding: 0.2rem 0.2rem; }
 
 .jumbotron-rooms,
 .jumbotron-treatments {
-  height: 8rem;
+  height: 11rem;
   padding-top: 2rem;
-  padding-left: 1rem; }
+  padding-left: 3rem;
+  opacity: 0.9; }
 
 .navbar-brand {
   font-size: medium; }

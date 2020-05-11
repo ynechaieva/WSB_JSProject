@@ -1,14 +1,12 @@
 .jumbotron-home {
     opacity: 0.9;
-    height: 20rem;
+    height: 18rem;
+    padding-left: 5rem;
 
-}
-
-.container-home {
-    padding: 2rem;
 }
 
 .home-show-details {
+    margin-top: 2.5rem;
     color: gray;
     font-size: small;
 
@@ -24,4 +22,5 @@
 
 .home-columns-container {
     display: none;
+    padding: 2rem 4rem 4rem 4rem;
 }

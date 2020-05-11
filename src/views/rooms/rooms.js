@@ -1,27 +1,28 @@
 import $ from 'jquery';
 import { roomsList } from './rooms-list';
-import { Input } from './calendar/input';
+import { Daterangepicker } from './calendar/daterangepicker';
 import { Button } from '../../components/button';
 
 
 
 export const rooms = () => {
 
-  const fragment = $(new DocumentFragment());
+  const drp = Daterangepicker;
   const btn = new Button("show-rooms-list");
+  const fragment = $(new DocumentFragment());
+  
   const jumbotron = $(`
   <div class="jumbotron jumbotron-rooms">
     <div class="container">
-      <p> Please, select proper date range to find available rooms for booking: </p> 
-      
+      <h4>Rooms</h4>
+      <p>Please, select proper date range to find available room for booking:</p> 
     </div>
   </div>`
   );
   
-  jumbotron.find(".container").append(Input).append(btn);
+  
+  jumbotron.find(".container").append(drp);
   const rlist = $(`<div class='rooms-list'></div>`);
-
-  //fragment.append(jumbotron);
 
   fragment.append(jumbotron).append(rlist);
   

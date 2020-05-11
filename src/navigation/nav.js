@@ -10,7 +10,7 @@ export const nav = () => {
   const navbar = $(`
   <nav class="navbar navbar-expand-sm bg-dark text-light">
     <div class="container-fluid">
-      <span class="navbar-brand text-muted">totEnot |</span>
+      <span class="navbar-brand text-muted">IT&SPA |</span>
       <ul class="navbar-nav mr-auto"></ul>
       <div class="cart-dropdown">
         <div class="cart-btn bg-dark div_hover"> Cart : 0 item(s) </div>  
