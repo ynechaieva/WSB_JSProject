@@ -24916,7 +24916,7 @@ var cart = new _cart.Cart();
 
 var roomsListItem = function roomsListItem(room) {
   var box = new _box.Box();
-  var bookBtn = new _button.Button("room-order-btn");
+  var bookBtn = new _button.Button("room-order-btn-" + room.id);
   bookBtn.addClass("hidden").text("Book a room");
   var li = (0, _jquery.default)('<li class="room-li"></li>').attr('id', room.id);
   var booked = room.booked;
@@ -25058,13 +25058,16 @@ var Daterangepicker = function Daterangepicker() {
   input.val("");
   input.on('cancel.daterangepicker', function (ev, picker) {
     input.val("");
-    (0, _jquery.default)("#room-order-btn").addClass("hidden");
+    Array.of((0, _jquery.default)('[id*="room-order-btn-"]')).forEach(function (elem) {
+      return elem.addClass("hidden");
+    });
   });
   input.on('apply.daterangepicker', function (ev, picker) {
     console.log(picker.startDate.format('YYYY-MM-DD'));
-    console.log(picker.endDate.format('YYYY-MM-DD')); //$(".rooms-list").append(roomsList);
-
-    (0, _jquery.default)("#room-order-btn").removeClass("hidden");
+    console.log(picker.endDate.format('YYYY-MM-DD'));
+    Array.of((0, _jquery.default)('[id*="room-order-btn-"]')).forEach(function (elem) {
+      return elem.removeClass("hidden");
+    });
   });
   return input;
 };

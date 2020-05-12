@@ -8,7 +8,7 @@ const cart = new Cart();
 
 export const roomsListItem = (room) => {
     const box = new Box();
-    const bookBtn = new Button("room-order-btn");
+    const bookBtn = new Button("room-order-btn-" + room.id);
     bookBtn.addClass("hidden").text("Book a room");
     const li = $('<li class="room-li"></li>').attr('id', room.id);
     let booked = room.booked;

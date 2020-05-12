@@ -20,14 +20,14 @@ export const Daterangepicker = () => {
 
     input.on('cancel.daterangepicker', function(ev, picker){
         input.val("");
-        $("#room-order-btn").addClass("hidden");
+        Array.of($('[id*="room-order-btn-"]')).forEach(elem => elem.addClass("hidden")); 
     });
 
     input.on('apply.daterangepicker', function(ev, picker) {
         console.log(picker.startDate.format('YYYY-MM-DD'));
         console.log(picker.endDate.format('YYYY-MM-DD'));
-        //$(".rooms-list").append(roomsList);
-        $("#room-order-btn").removeClass("hidden");
+        Array.of($('[id*="room-order-btn-"]')).forEach(elem => elem.removeClass("hidden"));  
+
       });
 
     return input;
