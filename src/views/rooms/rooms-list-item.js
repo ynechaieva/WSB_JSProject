@@ -2,6 +2,7 @@ import $ from 'jquery';
 import { Cart } from '../../cart/cart';
 import { Box } from '../../components/box';
 import { Button } from '../../components/button';
+import { DaterangePicker } from '../rooms/calendar/daterangepicker';
 
 
 const cart = new Cart();
@@ -17,7 +18,6 @@ export const roomsListItem = (room) => {
 
     addFlexClass(room.id);
     
-
     // --- build box for room
     let image = box.image.addClass("room-image");
     image.find('img').attr('src', room.img);
@@ -39,8 +39,15 @@ export const roomsListItem = (room) => {
 
     // --- functions ---
     const bookRoom = function() {
-        cart.add('rooms', room.id);
-        console.log("room.id " + room.id);
+ 
+        
+        let inputVal = $('#daterange').val();
+        if(checkRange(inputVal) ){
+            console.log("book a room");
+            cart.add('rooms', {roomid: room.id, roomname: room.name, roomprice: room.price, roomrange: inputVal});
+        }
+        else console.log("do not show the room");
+       
     };
 
     function addFlexClass(n) {
@@ -54,11 +61,24 @@ export const roomsListItem = (room) => {
         return n % 2 == 0;
     };
 
+    const checkRange = function(daterange) {
+        let iStartDate = new Date(daterange.split(" - ")[0]);
+        let iEndtDate = new Date(daterange.split(" - ")[1]);
+
+        let arr = room.booked.filter(bookedRange => {
+            let startDate = new Date(bookedRange.split(" - ")[0]);
+            let endtDate = new Date(bookedRange.split(" - ")[1]);
+
+            return  ((startDate <= iStartDate <= endtDate) || (startDate <= iEndtDate <= endtDate));
+        });
+
+        return arr.length == 0;
+    };
+
     // ---events ---
     bookBtn.click(bookRoom);
 
-
-
     //--- return ---
     return li;
+
 };

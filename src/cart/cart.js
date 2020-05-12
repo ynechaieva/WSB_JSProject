@@ -22,8 +22,6 @@ export class Cart {
       if (this.exists()) {
         // 'IT_SPA_CART=wartosc'
         const itSpaCookie = this.cookie(); // 'IT_SPA_CART={rooms:[], treatments:[]}'
-        console.log(itSpaCookie);
-
         const cookiesObj = JSON.parse(itSpaCookie.split('=')[1]);
         return cookiesObj;
       } else {
