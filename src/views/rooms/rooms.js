@@ -1,13 +1,12 @@
 import $ from 'jquery';
-import { roomsList } from './rooms-list';
+import { roomsList, roomsArray } from './rooms-list';
 import { DaterangePicker } from './calendar/daterangepicker';
+import { Cart } from '../../cart/cart';
 
-
+const cart = new Cart();
 
 export const rooms = () => {
   const drp = new DaterangePicker();
-  //const drp = Daterangepicker;
-  //const btn = new Button("show-rooms-list");
   const fragment = $(new DocumentFragment());
   
   const jumbotron = $(`
@@ -19,26 +18,68 @@ export const rooms = () => {
   </div>`
   );
   
-  
   jumbotron.find(".container").append(drp);
-  console.log(jumbotron.find(".container").html());
   const rlist = $(`<div class='global-rooms-list'></div>`);
   rlist.append(roomsList);
 
   fragment.append(jumbotron).append(rlist);
 
-
+  // --- events ---
   drp.on('apply.daterangepicker', function(ev, picker) {
-      Array.of($('[id*="room-order-btn-"]')).forEach(elem => elem.removeClass("hidden"));  
-      //drp.removeClassFromElems($('[id*="room-order-btn-"]'), "hidden");
+    showAvailableRoomsForRange(drp.val());
+    Array.of($('[id*="room-order-btn-"]')).forEach(elem => elem.removeClass("hidden"));  
   });
 
   drp.on('cancel.daterangepicker', function(ev, picker){
-      drp.val("");
-      Array.of($('[id*="room-order-btn-"]')).forEach(elem => elem.addClass("hidden")); 
-      //drp.addClassToElems($('[id*="room-order-btn-"]'), "hidden");
+    drp.val("");
+    Array.of($('[id*="room-order-btn-"]')).forEach(elem => elem.addClass("hidden")); 
+    $(".room-li").removeClass("hidden");
   });
+  // --- 
 
 
-  return fragment;
+  // --- functions
+  const showAvailableRoomsForRange = function(daterange) {
+    let arr = roomsArray;
+    
+    for(let i = 0; i < arr.length; i++){
+      let flag = isBooked(arr[i].booked, daterange);
+      if(flag){
+        console.log("do not show " + arr[i].id);
+        $(`li#${arr[i].id}.room-li`).addClass("hidden");
+      }
+      else {
+        let roomrange = cart.get().rooms.filter(function(room) {
+          return room.roomid == arr[i].id;
+        }).map(room => room.roomrange);
+        //console.log("roomrange: " + roomrange);
+        let cartFlag = isBooked(roomrange, daterange);
+        //console.log("cartFlag " + cartFlag);
+        if(cartFlag){
+          console.log("do not show " + arr[i].id);
+          $(`li#${arr[i].id}.room-li`).addClass("hidden");
+        }
+        else {
+          console.log("show " + arr[i].id);
+        }
+      }
+    }
+  };
+
+const isBooked = function(arr, input) {
+  let inputStartDate = new Date(input.split(" - ")[0]);
+  let inputEndDate = new Date(input.split(" - ")[1]);
+
+  for(let i = 0; i < arr.length; i++) {
+    let bookedStartDate = new Date(arr[i].split(" - ")[0]);
+    let bookedEndDate = new Date(arr[i].split(" - ")[1]);
+    
+    if ((bookedStartDate <= inputStartDate <= bookedEndDate) || (bookedStartDate <= inputEndDate <= bookedEndDate)){
+      return true;
+    }
+  }
+  return false;
+ };
+
+ return fragment;
 };

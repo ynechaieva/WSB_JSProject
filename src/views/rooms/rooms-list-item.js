@@ -11,7 +11,7 @@ export const roomsListItem = (room) => {
     const box = new Box();
     const bookBtn = new Button("room-order-btn-" + room.id);
     bookBtn.addClass("hidden").text("Book a room");
-    const li = $('<li class="room-li"></li>').attr('id', room.id);
+    const li = $(`<li id="${room.id}" class="room-li"></li>`);
     let booked = room.booked;
 
     box.addClassToBox("room-box");
@@ -21,7 +21,7 @@ export const roomsListItem = (room) => {
     // --- build box for room
     let image = box.image.addClass("room-image");
     image.find('img').attr('src', room.img);
-    let header = box.header.text(room.name).addClass('room-item room-name');
+    let header = box.header.text(room.id + " " + room.name).addClass('room-item room-name');
     let description = box.description.text(room.description).addClass('room-item room-description');
     description.html(`<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> 
                       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
@@ -40,13 +40,15 @@ export const roomsListItem = (room) => {
     // --- functions ---
     const bookRoom = function() {
  
-        
         let inputVal = $('#daterange').val();
         if(checkRange(inputVal) ){
             console.log("book a room");
             cart.add('rooms', {roomid: room.id, roomname: room.name, roomprice: room.price, roomrange: inputVal});
         }
-        else console.log("do not show the room");
+        else {
+            $("#rooms-list").innerHTML("");
+            console.log("do not show a rooms");
+        };
        
     };
 

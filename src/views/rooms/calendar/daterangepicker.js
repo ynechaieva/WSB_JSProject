@@ -11,28 +11,6 @@ export class DaterangePicker {
         return this.drp;
     }
 
-    // clear(arr, class_) {
-    //     this.drp.on('cancel.daterangepicker', function(ev, picker){
-    //         this.drp.val("");
-    //         //Array.of($('[id*="room-order-btn-"]')).forEach(elem => elem.addClass("hidden")); 
-    //         addClassToElems(arr, class_);
-    //     });
-    // }
-
-    // apply(arr, class_) {
-    //     this.drp.on('apply.daterangepicker', function(ev, picker) {
-        
-    //         this.startDate = picker.startDate.format('YYYY-MM-DD');
-    //         this.endDate = picker.endDate.format('YYYY-MM-DD');
-    //         //console.log(startDate);
-    //         //console.log(endDate);
-    //         //Array.of($('[id*="room-order-btn-"]')).forEach(elem => elem.removeClass("hidden"));  
-    //         remoweClassFromElems(arr, class_);
-    
-    //       });
-    // }
-
-    
     addClassToElems(arr, class_) {
         Array.of(arr).forEach(elem => elem.addClass(class_));
     }
@@ -66,49 +44,25 @@ export class DaterangePicker {
         this.drp.val("");
     }
 
-} // --- end of class
+        // clear(arr, class_) {
+    //     this.drp.on('cancel.daterangepicker', function(ev, picker){
+    //         this.drp.val("");
+    //         //Array.of($('[id*="room-order-btn-"]')).forEach(elem => elem.addClass("hidden")); 
+    //         addClassToElems(arr, class_);
+    //     });
+    // }
 
-
-// export const Daterangepicker = () => {
-//     const input = $(`<input id="daterange" value="" class="input-daterange"/>`);
-//     const now = new Date();
-//     var oneYearFromNow = new Date();
-
-//     let startDate = "";
-//     let endDate = "";
-//     //--- calculate one year from current date for calendar ---
-//     oneYearFromNow.setFullYear(now.getFullYear() + 1);
-
-//     input.daterangepicker({
-//         minDate: now,
-//         maxDate: oneYearFromNow,
-//         locale: { cancelLabel: 'Clear' } 
-//     });
-//     input.val("");  
-
-//     input.on('cancel.daterangepicker', function(ev, picker){
-//         input.val("");
-//         Array.of($('[id*="room-order-btn-"]')).forEach(elem => elem.addClass("hidden")); 
-//     });
-
-//     input.on('apply.daterangepicker', function(ev, picker) {
+    // apply(arr, class_) {
+    //     this.drp.on('apply.daterangepicker', function(ev, picker) {
         
-//         this.startDate = picker.startDate.format('YYYY-MM-DD');
-//         this.endDate = picker.endDate.format('YYYY-MM-DD');
-//         //console.log(startDate);
-//         //console.log(endDate);
-//         Array.of($('[id*="room-order-btn-"]')).forEach(elem => elem.removeClass("hidden"));  
+    //         this.startDate = picker.startDate.format('YYYY-MM-DD');
+    //         this.endDate = picker.endDate.format('YYYY-MM-DD');
+    //         //console.log(startDate);
+    //         //console.log(endDate);
+    //         //Array.of($('[id*="room-order-btn-"]')).forEach(elem => elem.removeClass("hidden"));  
+    //         remoweClassFromElems(arr, class_);
+    
+    //       });
+    // }
 
-//       });
-
-//       function getStartDate() {
-//           return this.startDate;
-//       }
-
-
-//       function getEndDate() {
-//         return this.endDate;
-//       }
-
-//     return input;
-// };
+} // --- end of class

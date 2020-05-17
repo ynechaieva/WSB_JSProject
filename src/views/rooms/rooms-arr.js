@@ -1,13 +1,15 @@
-import $ from 'jquery';
 import { roomsService } from '../../common/rooms-service';
 
-export const roomsList = () => {
-    const list = [];
+const roomsArray = () => {
 
+    let arr = [];
     roomsService.getRooms()
-    .then(rooms => rooms.map(room => list.push(room)));
+    .then(rooms => rooms.map(room => room.id))
+    .then(roomsListItems => arr.push(roomsListItems));
 
-    console.log(list);
+    console.log(arr);
 
-    return list;
+  return arr;
 };
+
+export { roomsArray };

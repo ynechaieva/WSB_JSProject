@@ -1,2 +1,5 @@
 node_modules/
 .cache/
+dist/
+dist/it-spa.4bb7a28f.js
+dist/it-spa.4bb7a28f.js.map
