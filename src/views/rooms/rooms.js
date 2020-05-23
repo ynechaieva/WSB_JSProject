@@ -45,22 +45,18 @@ export const rooms = () => {
     for(let i = 0; i < arr.length; i++){
       let flag = isBooked(arr[i].booked, daterange);
       if(flag){
-        console.log("do not show " + arr[i].id);
         $(`li#${arr[i].id}.room-li`).addClass("hidden");
       }
       else {
         let roomrange = cart.get().rooms.filter(function(room) {
           return room.roomid == arr[i].id;
         }).map(room => room.roomrange);
-        //console.log("roomrange: " + roomrange);
         let cartFlag = isBooked(roomrange, daterange);
-        //console.log("cartFlag " + cartFlag);
         if(cartFlag){
-          console.log("do not show " + arr[i].id);
           $(`li#${arr[i].id}.room-li`).addClass("hidden");
         }
-        else {
-          console.log("show " + arr[i].id);
+        else {  
+          continue; 
         }
       }
     }

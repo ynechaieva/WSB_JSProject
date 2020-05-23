@@ -1,63 +1,52 @@
 .jumbotron-treatments {
-    height: 11rem;
     padding-top: 2rem;
-    padding-left: 3rem;
-    opacity: 0.9;
+    padding-bottom: 3rem;
 }
 
-.treatment-item {
-    margin-right: 40px;
+.global-treatments-list {
+    padding-bottom: 3rem;
+    margin: 0;
 }
 
-.treatment-box {
+#treatments-list {
+    //width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.treatment-li {
     width: 30rem;
     height: 35rem;
     box-shadow: 0px 8px 10px 0px rgba(0,0,0,0.2);
     border-radius: 1%;
     padding: 1rem;
     background-color: whitesmoke;
-    &:hover .box .box-content .treatment-order-btn {
-        height: 4rem;
-    }
-}
-
-#treatments-list li {
-    display: inline;
+    opacity: 0.9;
     margin: 0 0 2rem 0;
 }
 
-#treatments-list {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+.treatment-box {
+    width: 100%;
+    height: 100%;
 }
 
-.treatment-order-btn {
+.treatment-image {
+    height: 60%;
     width: 100%;
-    background-color: lightyellow;
 }
 
 .treatment-image img{
     height: 100%;
     width: 100%;
-    //display: block;
+    object-fit: cover;
 }
 
-
-.box {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.box-image {
-    flex-shrink: 3;
-}
-
-.box-content-footer {
-    bottom: 0;
+button[id*="treatment-order-btn-"] {
     width: 100%;
 }
+
+
 // .treatment-box:nth-child(odd) {
 //     background-color: whitesmoke;
 // }

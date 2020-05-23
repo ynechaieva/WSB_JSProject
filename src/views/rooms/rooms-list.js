@@ -15,7 +15,7 @@ const roomsList = () => {
     }))
     .then(roomsListItems => ul.append(roomsListItems));
 
-    console.log(roomsArray);
+    //console.log(roomsArray);
   return ul;
 };
 

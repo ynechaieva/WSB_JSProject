@@ -2,7 +2,7 @@ import $ from 'jquery';
 import { Cart } from '../../cart/cart';
 import { Box } from '../../components/box';
 import { Button } from '../../components/button';
-import { DaterangePicker } from '../rooms/calendar/daterangepicker';
+//import { DaterangePicker } from '../rooms/calendar/daterangepicker';
 
 
 const cart = new Cart();
@@ -15,6 +15,7 @@ export const roomsListItem = (room) => {
     let booked = room.booked;
 
     box.addClassToBox("room-box");
+    box.footer.addClass("room-footer");
 
     addFlexClass(room.id);
     
@@ -35,6 +36,7 @@ export const roomsListItem = (room) => {
     let content = box.buildContent(header, description, footer);
 
     li.append(box.buildBox(image, content));
+    li.find(".box-content").addClass("room-box-content");
     li.find(".box-content").append(bookBtn);
 
     // --- functions ---
@@ -42,12 +44,12 @@ export const roomsListItem = (room) => {
  
         let inputVal = $('#daterange').val();
         if(checkRange(inputVal) ){
-            console.log("book a room");
+            //console.log("book a room");
             cart.add('rooms', {roomid: room.id, roomname: room.name, roomprice: room.price, roomrange: inputVal});
         }
         else {
             $("#rooms-list").innerHTML("");
-            console.log("do not show a rooms");
+            //console.log("do not show a rooms");
         };
        
     };

@@ -24893,7 +24893,142 @@ var Button = /*#__PURE__*/function () {
 
 
 exports.Button = Button;
-},{"jquery":"node_modules/jquery/dist/jquery.js","../views/rooms/rooms-list":"src/views/rooms/rooms-list.js"}],"src/views/rooms/rooms-arr.js":[function(require,module,exports) {
+},{"jquery":"node_modules/jquery/dist/jquery.js","../views/rooms/rooms-list":"src/views/rooms/rooms-list.js"}],"src/views/rooms/rooms-list-item.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.roomsListItem = void 0;
+
+var _jquery = _interopRequireDefault(require("jquery"));
+
+var _cart = require("../../cart/cart");
+
+var _box = require("../../components/box");
+
+var _button = require("../../components/button");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//import { DaterangePicker } from '../rooms/calendar/daterangepicker';
+var cart = new _cart.Cart();
+
+var roomsListItem = function roomsListItem(room) {
+  var box = new _box.Box();
+  var bookBtn = new _button.Button("room-order-btn-" + room.id);
+  bookBtn.addClass("hidden").text("Book a room");
+  var li = (0, _jquery.default)("<li id=\"".concat(room.id, "\" class=\"room-li\"></li>"));
+  var booked = room.booked;
+  box.addClassToBox("room-box");
+  box.footer.addClass("room-footer");
+  addFlexClass(room.id); // --- build box for room
+
+  var image = box.image.addClass("room-image");
+  image.find('img').attr('src', room.img);
+  var header = box.header.text(room.id + " " + room.name).addClass('room-item room-name');
+  var description = box.description.text(room.description).addClass('room-item room-description');
+  description.html("<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> \n                      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>\n                      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>");
+  var beds = (0, _jquery.default)("<p> <b>Beds:</b> ".concat(room.beds, " </p>"));
+  var guests = (0, _jquery.default)("<p> <b>Guests:</b> ".concat(room.guests, " </p>"));
+  var price = (0, _jquery.default)("<p> <b>Price:</b> ".concat(room.price, " pln </p>"));
+  var footer = box.footer.append(beds).append(guests).append(price);
+  var content = box.buildContent(header, description, footer);
+  li.append(box.buildBox(image, content));
+  li.find(".box-content").addClass("room-box-content");
+  li.find(".box-content").append(bookBtn); // --- functions ---
+
+  var bookRoom = function bookRoom() {
+    var inputVal = (0, _jquery.default)('#daterange').val();
+
+    if (checkRange(inputVal)) {
+      //console.log("book a room");
+      cart.add('rooms', {
+        roomid: room.id,
+        roomname: room.name,
+        roomprice: room.price,
+        roomrange: inputVal
+      });
+    } else {
+      (0, _jquery.default)("#rooms-list").innerHTML(""); //console.log("do not show a rooms");
+    }
+
+    ;
+  };
+
+  function addFlexClass(n) {
+    if (isEven(n)) {
+      box.addClassToBox("room-right");
+    } else {
+      box.addClassToBox("room-left");
+    }
+
+    ;
+  }
+
+  ;
+
+  function isEven(n) {
+    return n % 2 == 0;
+  }
+
+  ;
+
+  var checkRange = function checkRange(daterange) {
+    var iStartDate = new Date(daterange.split(" - ")[0]);
+    var iEndtDate = new Date(daterange.split(" - ")[1]);
+    var arr = room.booked.filter(function (bookedRange) {
+      var startDate = new Date(bookedRange.split(" - ")[0]);
+      var endtDate = new Date(bookedRange.split(" - ")[1]);
+      return startDate <= iStartDate <= endtDate || startDate <= iEndtDate <= endtDate;
+    });
+    return arr.length == 0;
+  }; // ---events ---
+
+
+  bookBtn.click(bookRoom); //--- return ---
+
+  return li;
+};
+
+exports.roomsListItem = roomsListItem;
+},{"jquery":"node_modules/jquery/dist/jquery.js","../../cart/cart":"src/cart/cart.js","../../components/box":"src/components/box.js","../../components/button":"src/components/button.js"}],"src/views/rooms/rooms-list.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.roomsArray = exports.roomsList = void 0;
+
+var _jquery = _interopRequireDefault(require("jquery"));
+
+var _roomsService = require("../../common/rooms-service");
+
+var _roomsListItem = require("./rooms-list-item");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var roomsArray = [];
+exports.roomsArray = roomsArray;
+
+var roomsList = function roomsList() {
+  var ul = (0, _jquery.default)('<ul id="rooms-list" class="list-group"></ul>'); // doczepia liste pokoi, gdy tylko przyjdzie z serwera
+
+  _roomsService.roomsService.getRooms().then(function (rooms) {
+    return rooms.map(function (room) {
+      roomsArray.push(room);
+      return (0, _roomsListItem.roomsListItem)(room);
+    });
+  }).then(function (roomsListItems) {
+    return ul.append(roomsListItems);
+  }); //console.log(roomsArray);
+
+
+  return ul;
+};
+
+exports.roomsList = roomsList;
+},{"jquery":"node_modules/jquery/dist/jquery.js","../../common/rooms-service":"src/common/rooms-service.js","./rooms-list-item":"src/views/rooms/rooms-list-item.js"}],"src/views/rooms/rooms-arr.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25016,142 +25151,7 @@ var DaterangePicker = /*#__PURE__*/function () {
 
 
 exports.DaterangePicker = DaterangePicker;
-},{"jquery":"node_modules/jquery/dist/jquery.js","daterangepicker":"node_modules/daterangepicker/daterangepicker.js","../rooms-list":"src/views/rooms/rooms-list.js","../rooms-arr":"src/views/rooms/rooms-arr.js"}],"src/views/rooms/rooms-list-item.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.roomsListItem = void 0;
-
-var _jquery = _interopRequireDefault(require("jquery"));
-
-var _cart = require("../../cart/cart");
-
-var _box = require("../../components/box");
-
-var _button = require("../../components/button");
-
-var _daterangepicker = require("../rooms/calendar/daterangepicker");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var cart = new _cart.Cart();
-
-var roomsListItem = function roomsListItem(room) {
-  var box = new _box.Box();
-  var bookBtn = new _button.Button("room-order-btn-" + room.id);
-  bookBtn.addClass("hidden").text("Book a room");
-  var li = (0, _jquery.default)("<li id=\"".concat(room.id, "\" class=\"room-li\"></li>"));
-  var booked = room.booked;
-  box.addClassToBox("room-box");
-  addFlexClass(room.id); // --- build box for room
-
-  var image = box.image.addClass("room-image");
-  image.find('img').attr('src', room.img);
-  var header = box.header.text(room.id + " " + room.name).addClass('room-item room-name');
-  var description = box.description.text(room.description).addClass('room-item room-description');
-  description.html("<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> \n                      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>\n                      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>");
-  var beds = (0, _jquery.default)("<p> <b>Beds:</b> ".concat(room.beds, " </p>"));
-  var guests = (0, _jquery.default)("<p> <b>Guests:</b> ".concat(room.guests, " </p>"));
-  var price = (0, _jquery.default)("<p> <b>Price:</b> ".concat(room.price, " pln </p>"));
-  var footer = box.footer.append(beds).append(guests).append(price);
-  var content = box.buildContent(header, description, footer);
-  li.append(box.buildBox(image, content));
-  li.find(".box-content").append(bookBtn); // --- functions ---
-
-  var bookRoom = function bookRoom() {
-    var inputVal = (0, _jquery.default)('#daterange').val();
-
-    if (checkRange(inputVal)) {
-      console.log("book a room");
-      cart.add('rooms', {
-        roomid: room.id,
-        roomname: room.name,
-        roomprice: room.price,
-        roomrange: inputVal
-      });
-    } else {
-      (0, _jquery.default)("#rooms-list").innerHTML("");
-      console.log("do not show a rooms");
-    }
-
-    ;
-  };
-
-  function addFlexClass(n) {
-    if (isEven(n)) {
-      box.addClassToBox("room-right");
-    } else {
-      box.addClassToBox("room-left");
-    }
-
-    ;
-  }
-
-  ;
-
-  function isEven(n) {
-    return n % 2 == 0;
-  }
-
-  ;
-
-  var checkRange = function checkRange(daterange) {
-    var iStartDate = new Date(daterange.split(" - ")[0]);
-    var iEndtDate = new Date(daterange.split(" - ")[1]);
-    var arr = room.booked.filter(function (bookedRange) {
-      var startDate = new Date(bookedRange.split(" - ")[0]);
-      var endtDate = new Date(bookedRange.split(" - ")[1]);
-      return startDate <= iStartDate <= endtDate || startDate <= iEndtDate <= endtDate;
-    });
-    return arr.length == 0;
-  }; // ---events ---
-
-
-  bookBtn.click(bookRoom); //--- return ---
-
-  return li;
-};
-
-exports.roomsListItem = roomsListItem;
-},{"jquery":"node_modules/jquery/dist/jquery.js","../../cart/cart":"src/cart/cart.js","../../components/box":"src/components/box.js","../../components/button":"src/components/button.js","../rooms/calendar/daterangepicker":"src/views/rooms/calendar/daterangepicker.js"}],"src/views/rooms/rooms-list.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.roomsArray = exports.roomsList = void 0;
-
-var _jquery = _interopRequireDefault(require("jquery"));
-
-var _roomsService = require("../../common/rooms-service");
-
-var _roomsListItem = require("./rooms-list-item");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var roomsArray = [];
-exports.roomsArray = roomsArray;
-
-var roomsList = function roomsList() {
-  var ul = (0, _jquery.default)('<ul id="rooms-list" class="list-group"></ul>'); // doczepia liste pokoi, gdy tylko przyjdzie z serwera
-
-  _roomsService.roomsService.getRooms().then(function (rooms) {
-    return rooms.map(function (room) {
-      roomsArray.push(room);
-      return (0, _roomsListItem.roomsListItem)(room);
-    });
-  }).then(function (roomsListItems) {
-    return ul.append(roomsListItems);
-  });
-
-  console.log(roomsArray);
-  return ul;
-};
-
-exports.roomsList = roomsList;
-},{"jquery":"node_modules/jquery/dist/jquery.js","../../common/rooms-service":"src/common/rooms-service.js","./rooms-list-item":"src/views/rooms/rooms-list-item.js"}],"src/views/rooms/rooms.js":[function(require,module,exports) {
+},{"jquery":"node_modules/jquery/dist/jquery.js","daterangepicker":"node_modules/daterangepicker/daterangepicker.js","../rooms-list":"src/views/rooms/rooms-list.js","../rooms-arr":"src/views/rooms/rooms-arr.js"}],"src/views/rooms/rooms.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25202,28 +25202,27 @@ var rooms = function rooms() {
       var flag = isBooked(arr[i].booked, daterange);
 
       if (flag) {
-        console.log("do not show " + arr[i].id);
         (0, _jquery.default)("li#".concat(arr[i].id, ".room-li")).addClass("hidden");
       } else {
         var roomrange = cart.get().rooms.filter(function (room) {
           return room.roomid == arr[i].id;
         }).map(function (room) {
           return room.roomrange;
-        }); //console.log("roomrange: " + roomrange);
-
-        var cartFlag = isBooked(roomrange, daterange); //console.log("cartFlag " + cartFlag);
+        });
+        var cartFlag = isBooked(roomrange, daterange);
 
         if (cartFlag) {
-          console.log("do not show " + arr[i].id);
           (0, _jquery.default)("li#".concat(arr[i].id, ".room-li")).addClass("hidden");
         } else {
-          console.log("show " + arr[i].id);
+          return "continue";
         }
       }
     };
 
     for (var i = 0; i < arr.length; i++) {
-      _loop(i);
+      var _ret = _loop(i);
+
+      if (_ret === "continue") continue;
     }
   };
 
@@ -25289,24 +25288,37 @@ var cart = new _cart.Cart();
 
 var treatmentsListItem = function treatmentsListItem(treatment) {
   var box = new _box.Box();
-  var btn = new _button.Button("Order");
-  btn.addClass("treatment-order-btn");
-  var li = (0, _jquery.default)('<li class="treatment-box"></li>').attr('id', treatment.id); // --- build box for treatment
+  var orderBtn = new _button.Button("treatment-order-btn-" + treatment.id);
+  orderBtn.text("Order");
+  var li = (0, _jquery.default)("<li id=\"".concat(treatment.id, "\" class=\"treatment-li\"></li>"));
+  box.addClassToBox("treatment-box");
+  box.footer.addClass("treatment-footer"); // --- build box for treatment
 
   var image = box.image.addClass("treatment-image");
   image.find('img').attr('src', treatment.img);
   var header = box.header.text(treatment.name).addClass('treatment-item treatment-name');
   var description = box.description.text(treatment.description).addClass('treatment-item treatment-description');
-  var footer = box.footer.text("area: ".concat(treatment.area, " | time: ").concat(treatment.time, " min(s) | price: ").concat(treatment.price, "pln"));
+  var area = (0, _jquery.default)("<span> <b>Area:</b> ".concat(treatment.area, " </span>"));
+  var time = (0, _jquery.default)("<span> <b>Time:</b> ".concat(treatment.time, " min(s) </span>"));
+  var price = (0, _jquery.default)("<span> <b>Price:</b> ".concat(treatment.price, " pln </span>"));
+  var footerStr = (0, _jquery.default)("<p></p>");
+  footerStr.append(area).append(" | ").append(time).append(" | ").append(price);
+  var footer = box.footer.append(footerStr);
   var content = box.buildContent(header, description, footer);
   li.append(box.buildBox(image, content));
-  li.find(".box-content").append(btn); // --- events ---
+  li.find(".box-content").addClass("treatment-box-content");
+  li.find(".box-content").append(orderBtn); // --- functions ---
 
   var orderTreatment = function orderTreatment() {
-    cart.add('treatments', treatment.id);
-  };
+    cart.add('treatments', {
+      treatmentid: treatment.id,
+      treatmentname: treatment.name,
+      treatmentprice: treatment.price
+    });
+  }; // ---events ---
 
-  btn.click(orderTreatment); // --- return ---
+
+  orderBtn.click(orderTreatment); // --- return ---
 
   return li;
 };
@@ -25318,7 +25330,7 @@ exports.treatmentsListItem = treatmentsListItem;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.treatmentsList = void 0;
+exports.treatmentsArray = exports.treatmentsList = void 0;
 
 var _jquery = _interopRequireDefault(require("jquery"));
 
@@ -25328,12 +25340,15 @@ var _treatmentsListItem = require("./treatments-list-item");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var treatmentsArray = [];
+exports.treatmentsArray = treatmentsArray;
+
 var treatmentsList = function treatmentsList() {
-  var ul = (0, _jquery.default)('<ul id="treatments-list" class="list-group"></ul>');
-  var roomsArr = [];
+  var ul = (0, _jquery.default)("<ul id=\"treatments-list\" class=\"list-group\"></ul>");
 
   _treatmentsService.treatmentsService.getTreatments().then(function (treatments) {
     return treatments.map(function (treatment) {
+      treatmentsArray.push(treatment);
       return (0, _treatmentsListItem.treatmentsListItem)(treatment);
     });
   }).then(function (treatmentsListItems) {
@@ -25360,8 +25375,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var treatments = function treatments() {
   var fragment = (0, _jquery.default)(new DocumentFragment());
-  var jumbotron = (0, _jquery.default)("\n  <div class=\"jumbotron jumbotron-treatments\">\n      <h4> Treatments list </h4> \n      <p> Below you can select a treatment and add it to the cart. \n          Fill free to read a description and select treatment which apply to your needs\n      </p>\n  </div>");
-  fragment.append(jumbotron).append((0, _treatmentsList.treatmentsList)());
+  var jumbotron = (0, _jquery.default)("\n  <div class=\"jumbotron jumbotron-treatments\">\n   <div class=\"container\">\n      <h4> Treatments list </h4> \n      <p> Below you can select a treatment and add it to the cart. \n          Fill free to read a description and select treatment which apply to your needs\n      </p>\n    </div>\n  </div>");
+  var tlist = (0, _jquery.default)("<div class='global-treatments-list'></div>");
+  tlist.append(_treatmentsList.treatmentsList);
+  fragment.append(jumbotron).append(tlist);
   return fragment;
 };
 
@@ -25648,18 +25665,14 @@ var nav = function nav() {
     var cookieObj = cart.get(); //-- loop for Rooms object in the cart
 
     cookieObj.rooms.forEach(function (item) {
-      var name = item.name;
-      var price = item.price;
-      totalSum += price;
-      var row = (0, _jquery.default)("<a href=\"#\"></a>").text(item.name + ": " + item.price + " pln");
+      totalSum += item.roomprice;
+      var row = (0, _jquery.default)("<a href=\"#\"></a>").text(item.roomname + ": " + item.roomprice + " pln");
       fragment.append(row);
     }); //-- loop for Treatments object in the cart
 
     cookieObj.treatments.forEach(function (item) {
-      var name = item.name;
-      var price = item.price;
-      totalSum += price;
-      var row = (0, _jquery.default)("<a href=\"#\"></a>").text(item.name + ": " + item.price + " pln");
+      totalSum += item.treatmentprice;
+      var row = (0, _jquery.default)("<a href=\"#\"></a>").text(item.treatmentname + ": " + item.treatmentprice + " pln");
       fragment.append(row);
     }); //-- count of items in the cart
 
@@ -25733,7 +25746,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55285" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56157" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

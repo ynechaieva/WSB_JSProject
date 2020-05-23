@@ -10642,51 +10642,42 @@ a.text-dark:hover, a.text-dark:focus {
 
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 .jumbotron-treatments {
-  height: 11rem;
   padding-top: 2rem;
-  padding-left: 3rem;
-  opacity: 0.9; }
+  padding-bottom: 3rem; }
 
-.treatment-item {
-  margin-right: 40px; }
-
-.treatment-box {
-  width: 30rem;
-  height: 35rem;
-  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.2);
-  border-radius: 1%;
-  padding: 1rem;
-  background-color: whitesmoke; }
-  .treatment-box:hover .box .box-content .treatment-order-btn {
-    height: 4rem; }
-
-#treatments-list li {
-  display: inline;
-  margin: 0 0 2rem 0; }
+.global-treatments-list {
+  padding-bottom: 3rem;
+  margin: 0; }
 
 #treatments-list {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly; }
 
-.treatment-order-btn {
+.treatment-li {
+  width: 30rem;
+  height: 35rem;
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 1%;
+  padding: 1rem;
+  background-color: whitesmoke;
+  opacity: 0.9;
+  margin: 0 0 2rem 0; }
+
+.treatment-box {
   width: 100%;
-  background-color: lightyellow; }
+  height: 100%; }
+
+.treatment-image {
+  height: 60%;
+  width: 100%; }
 
 .treatment-image img {
   height: 100%;
-  width: 100%; }
+  width: 100%;
+  object-fit: cover; }
 
-.box {
-  display: flex;
-  flex-direction: column;
-  height: 100%; }
-
-.box-image {
-  flex-shrink: 3; }
-
-.box-content-footer {
-  bottom: 0;
+button[id*="treatment-order-btn-"] {
   width: 100%; }
 
 .input-daterange {
@@ -10712,6 +10703,10 @@ a.text-dark:hover, a.text-dark:focus {
   border-radius: 1%;
   padding: 1rem; }
 
+.room-box {
+  width: 100%;
+  height: 100%; }
+
 .room-left {
   display: flex;
   flex-direction: row; }
@@ -10729,7 +10724,7 @@ a.text-dark:hover, a.text-dark:focus {
   width: 100%;
   object-fit: cover; }
 
-.box-content {
+.room-box-content {
   position: relative;
   padding: 2rem 1rem 1rem 1rem;
   font-family: 'Lato', sans-serif;
@@ -10745,7 +10740,7 @@ a.text-dark:hover, a.text-dark:focus {
   padding-top: 1rem;
   padding-bottom: 1rem; }
 
-.box-content-footer {
+.room-footer {
   padding-top: 1rem;
   position: absolute;
   bottom: 0.5rem;

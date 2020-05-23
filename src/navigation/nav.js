@@ -35,19 +35,15 @@ export const nav = () => {
     
     //-- loop for Rooms object in the cart
     cookieObj.rooms.forEach(function(item){
-      let name = item.name;
-      let price = item.price;
-      totalSum += price;
-      let row = $(`<a href="#"></a>`).text(item.name + ": " + item.price + " pln");
+      totalSum += item.roomprice;
+      let row = $(`<a href="#"></a>`).text(item.roomname + ": " + item.roomprice + " pln");
       fragment.append(row);
     });
 
     //-- loop for Treatments object in the cart
     cookieObj.treatments.forEach(function(item){
-      let name = item.name;
-      let price = item.price;
-      totalSum += price;
-      let row = $(`<a href="#"></a>`).text(item.name + ": " + item.price + " pln");
+      totalSum += item.treatmentprice;
+      let row = $(`<a href="#"></a>`).text(item.treatmentname + ": " + item.treatmentprice + " pln");
       fragment.append(row);
     });
 
