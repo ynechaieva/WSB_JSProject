@@ -36,21 +36,21 @@ export const nav = () => {
     //-- loop for Rooms object in the cart
     cookieObj.rooms.forEach(function(item){
       totalSum += item.roomprice;
-      let row = $(`<a href="#"></a>`).text(item.roomname + ": " + item.roomprice + " pln");
+      let row = $(`<a href="/rooms"></a>`).text(item.roomname + ": " + item.roomprice + " pln");
       fragment.append(row);
     });
 
     //-- loop for Treatments object in the cart
     cookieObj.treatments.forEach(function(item){
       totalSum += item.treatmentprice;
-      let row = $(`<a href="#"></a>`).text(item.treatmentname + ": " + item.treatmentprice + " pln");
+      let row = $(`<a href="/treatments"></a>`).text(item.treatmentname + ": " + item.treatmentprice + " pln");
       fragment.append(row);
     });
 
     //-- count of items in the cart
     let total = $(`
       <a class="divider"></a> 
-      <a class="cart-total disabled"><span>Total: ${totalSum} pln</span></a>`);
+      <a href="/booking" class="cart-total disabled"><span>Total: ${totalSum} pln</span></a>`);
 
     
     fragment.append(total);
@@ -71,7 +71,6 @@ export const nav = () => {
     $(".cart-content").append(cartList);
   });
 
-  //$(".cart-content").on("hover", cartList);
   //---------------------------------------------------
 
   navbar.find('ul').append(navItems);

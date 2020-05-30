@@ -10815,6 +10815,24 @@ button[id*="room-order-btn-"] {
   display: none;
   padding: 2rem 4rem 4rem 4rem; }
 
+.room-cart-item,
+.treatment-cart-item {
+  color: black; }
+
+.booking-container {
+  background-color: whitesmoke;
+  opacity: 0.8;
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 1%;
+  padding: 1rem; }
+
+.booked-rooms,
+.booked-treatments {
+  padding: 1rem; }
+
+.remove-btn {
+  margin-left: 1rem; }
+
 * {
   margin: 0;
   padding: 0;

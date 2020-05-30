@@ -41,6 +41,24 @@ export class Cart {
         const cookie = this.key + "=" + stringifiedValue;
         document.cookie = cookie;
     }
+
+    delete(type, id) {
+      const cookiesObj = this.get();
+      if(type == 'treatments'){
+        cookiesObj.treatments = cookiesObj.treatments.filter(item => {
+          return item.treatmentid != id;
+        });
+      } else if(type == 'rooms') {
+        cookiesObj.rooms = cookiesObj.rooms.filter(item => {
+          return item.roomid != id;
+        });
+      }
+
+      const stringifiedValue = JSON.stringify(cookiesObj);
+      const cookie = this.key + "=" + stringifiedValue;
+      console.log(cookie);
+      document.cookie = cookie;
+    }
   
     empty() {
       document.cookie = this.key + "=" + JSON.stringify({rooms:[], treatments:[]});
