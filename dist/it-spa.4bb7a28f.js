@@ -11449,7 +11449,7 @@ var booking = function booking() {
   });
   cookieObj.treatments.forEach(function (item) {
     //--- create data row
-    var table_row = (0, _jquery.default)("\n    <tr>\n      <td>".concat(item.treatmentname, "</td>\n      <td>").concat(item.treatmentprice, " pln</td>\n      <td>#</td>\n      <td> <button id=\"").concat(item.treatmentid, "\" type=\"treatments\" class=\"remove-btn btn btn-light\">remove</button></td>\n    </tr>\n    "));
+    var table_row = (0, _jquery.default)("\n    <tr>\n      <td>".concat(item.treatmentname, "</td>\n      <td>").concat(item.treatmentprice, " pln</td>\n      <td></td>\n      <td> <button id=\"").concat(item.treatmentid, "\" type=\"treatments\" class=\"remove-btn btn btn-light\">remove</button></td>\n    </tr>\n    "));
     table_row.find(".remove-btn").click(remove);
     data_table.find(".treatments-tb").append(table_row);
   });
@@ -24931,6 +24931,8 @@ var _box = require("../../components/box");
 
 var _button = require("../../components/button");
 
+var _router = require("../../router/router");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //import { DaterangePicker } from '../rooms/calendar/daterangepicker';
@@ -24948,9 +24950,11 @@ var roomsListItem = function roomsListItem(room) {
 
   var image = box.image.addClass("room-image");
   image.find('img').attr('src', room.img);
-  var header = box.header.text(room.id + " " + room.name).addClass('room-item room-name');
-  var description = box.description.text(room.description).addClass('room-item room-description');
-  description.html("<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> \n                      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>\n                      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>");
+  var header = box.header.text(room.name).addClass('room-item room-name');
+  var description = box.description.html(room.description).addClass('room-item room-description'); // description.html(`<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> 
+  //                   <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+  //                   <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>`);
+
   var beds = (0, _jquery.default)("<p> <b>Beds:</b> ".concat(room.beds, " </p>"));
   var guests = (0, _jquery.default)("<p> <b>Guests:</b> ".concat(room.guests, " </p>"));
   var price = (0, _jquery.default)("<p> <b>Price:</b> ".concat(room.price, " pln </p>"));
@@ -24976,6 +24980,7 @@ var roomsListItem = function roomsListItem(room) {
     }
 
     ;
+    window.location.href = "/booking";
   };
 
   function addFlexClass(n) {
@@ -25014,7 +25019,7 @@ var roomsListItem = function roomsListItem(room) {
 };
 
 exports.roomsListItem = roomsListItem;
-},{"jquery":"node_modules/jquery/dist/jquery.js","../../cart/cart":"src/cart/cart.js","../../components/box":"src/components/box.js","../../components/button":"src/components/button.js"}],"src/views/rooms/rooms-list.js":[function(require,module,exports) {
+},{"jquery":"node_modules/jquery/dist/jquery.js","../../cart/cart":"src/cart/cart.js","../../components/box":"src/components/box.js","../../components/button":"src/components/button.js","../../router/router":"src/router/router.js"}],"src/views/rooms/rooms-list.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

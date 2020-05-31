@@ -10680,6 +10680,14 @@ a.text-dark:hover, a.text-dark:focus {
 button[id*="treatment-order-btn-"] {
   width: 100%; }
 
+@media (max-width: 767px) {
+  .room-description p:not([class="mobile"]) {
+    display: none; } }
+
+@media (max-width: 1023px) {
+  .room-description p.ipad {
+    display: none; } }
+
 .input-daterange {
   width: 14rem;
   margin: 0;

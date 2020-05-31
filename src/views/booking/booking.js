@@ -64,7 +64,7 @@ export const booking = () => {
     <tr>
       <td>${item.treatmentname}</td>
       <td>${item.treatmentprice} pln</td>
-      <td>#</td>
+      <td></td>
       <td> <button id="${item.treatmentid}" type="treatments" class="remove-btn btn btn-light">remove</button></td>
     </tr>
     `);

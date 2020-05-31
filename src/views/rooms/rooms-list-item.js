@@ -3,6 +3,7 @@ import { Cart } from '../../cart/cart';
 import { Box } from '../../components/box';
 import { Button } from '../../components/button';
 //import { DaterangePicker } from '../rooms/calendar/daterangepicker';
+import { Router } from '../../router/router';
 
 
 const cart = new Cart();
@@ -22,11 +23,11 @@ export const roomsListItem = (room) => {
     // --- build box for room
     let image = box.image.addClass("room-image");
     image.find('img').attr('src', room.img);
-    let header = box.header.text(room.id + " " + room.name).addClass('room-item room-name');
-    let description = box.description.text(room.description).addClass('room-item room-description');
-    description.html(`<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> 
-                      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>`);
+    let header = box.header.text(room.name).addClass('room-item room-name');
+    let description = box.description.html(room.description).addClass('room-item room-description');
+    // description.html(`<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> 
+    //                   <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+    //                   <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>`);
     let beds = $(`<p> <b>Beds:</b> ${room.beds} </p>`);
     let guests = $(`<p> <b>Guests:</b> ${room.guests} </p>`);
     let price = $(`<p> <b>Price:</b> ${room.price} pln </p>`);
@@ -51,6 +52,8 @@ export const roomsListItem = (room) => {
             $("#rooms-list").innerHTML("");
             //console.log("do not show a rooms");
         };
+
+        window.location.href = "/booking";
        
     };
 

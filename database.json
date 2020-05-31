@@ -7,7 +7,7 @@
       "beds": 2,
       "guests": 3,
       "price": 275,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "description": "<p class='mobile'> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p> <p> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p><p class='ipad'>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
       "img": "https://images.unsplash.com/photo-1513161455079-7dc1de15ef3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
       "booked": []
     },
@@ -17,7 +17,7 @@
       "beds": 1,
       "guests": 2,
       "price": 240,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "description": "<p class='mobile'> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p> <p> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p><p class='ipad'>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
       "img": "https://images.unsplash.com/photo-1558603668-6570496b66f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80",
       "booked": ["05/14/2020 - 05/17/2020"]
     
@@ -28,7 +28,7 @@
       "beds": 1,
       "guests": 2,
       "price": 290,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "description": "<p class='mobile'> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p> <p> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p><p class='ipad'>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
       "img": "https://images.unsplash.com/photo-1528908929486-dfaa209c6986?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80",
       "booked": []
     },
@@ -38,7 +38,7 @@
       "beds": 2,
       "guests": 4,
       "price": 340,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "description": "<p class='mobile'> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p> <p> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p><p class='ipad'>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
       "img": "https://images.unsplash.com/photo-1581688127942-81aa836de621?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
       "booked": []
     },
@@ -48,7 +48,7 @@
       "beds": 2,
       "guests": 2,
       "price": 275,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "description": "<p class='mobile'> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p> <p> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p><p class='ipad'>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
       "img": "https://images.unsplash.com/photo-1501127122-f385ca6ddd9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80",
       "booked": []
     },
@@ -58,7 +58,7 @@
       "beds": 1,
       "guests": 1,
       "price": 170,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "description": "<p class='mobile'> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p> <p> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p><p class='ipad'>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
       "img": "https://images.unsplash.com/photo-1531835551805-16d864c8d311?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
       "booked": []
     }
