@@ -10795,7 +10795,7 @@ button[id*="room-order-btn-"] {
 .div_hover {
   color: gray; }
   .div_hover:hover {
-    color: orangered; }
+    color: #bc5a45; }
 
 .jumbotron-home {
   opacity: 0.9;
@@ -10815,23 +10815,15 @@ button[id*="room-order-btn-"] {
   display: none;
   padding: 2rem 4rem 4rem 4rem; }
 
-.room-cart-item,
-.treatment-cart-item {
-  color: black; }
-
 .booking-container {
-  background-color: whitesmoke;
   opacity: 0.8;
-  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.2);
-  border-radius: 1%;
-  padding: 1rem; }
+  padding: 2rem;
+  width: 100%; }
 
-.booked-rooms,
-.booked-treatments {
-  padding: 1rem; }
-
-.remove-btn {
-  margin-left: 1rem; }
+thead th {
+  background-color: whitesmoke;
+  color: black;
+  font-size: large; }
 
 * {
   margin: 0;
