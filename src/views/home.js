@@ -14,7 +14,6 @@ export const home = () => {
             We afford unique and very specific services which allow you relax and have fun alltogather.
           </p>
           <p>Fill free to join us and explore the new world of joy and happiness.</p>
-          <p> <span class="home-show-details">Show details >></span> </p>
       </div>
 
       <div class="home-columns-container container">

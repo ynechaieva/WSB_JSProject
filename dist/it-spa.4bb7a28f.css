@@ -10822,19 +10822,6 @@ button[id*="room-order-btn-"] {
   height: 18rem;
   padding-left: 5rem; }
 
-.home-show-details {
-  margin-top: 2.5rem;
-  color: gray;
-  font-size: small; }
-  .home-show-details:hover {
-    color: blue; }
-  .home-show-details:active {
-    color: orangered; }
-
-.home-columns-container {
-  display: none;
-  padding: 2rem 4rem 4rem 4rem; }
-
 .booking-container {
   opacity: 0.8;
   padding: 2rem;

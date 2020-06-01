@@ -4,23 +4,3 @@
     padding-left: 5rem;
 
 }
-
-.home-show-details {
-    margin-top: 2.5rem;
-    color: gray;
-    font-size: small;
-
-    &:hover {
-        color: blue;
-    }
-
-    &:active {
-        color: orangered;
-    }
-
-}
-
-.home-columns-container {
-    display: none;
-    padding: 2rem 4rem 4rem 4rem;
-}
