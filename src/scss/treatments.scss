@@ -46,10 +46,16 @@ button[id*="treatment-order-btn-"] {
     width: 100%;
 }
 
-
-// .treatment-box:nth-child(odd) {
-//     background-color: whitesmoke;
-// }
-// .treatment-box:nth-child(even) {
-//     background-color: whitesmoke;
-// }
+.custom-alert {
+    visibility: hidden;
+    background-color: #666;
+    color: #fff;
+    text-align: center;
+    margin: -40% auto;
+    padding: 2rem;
+    opacity: 0.9;
+    width: 20rem;
+    //height: 35rem;
+    box-shadow: 0px 8px 10px 0px rgba(0,0,0,0.2);
+    border-radius: 2%;
+  }

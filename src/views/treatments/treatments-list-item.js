@@ -8,6 +8,7 @@ const cart = new Cart();
 export const treatmentsListItem = (treatment) => {
   const box = new Box();
   const orderBtn = new Button("treatment-order-btn-" + treatment.id);
+  const alert = $(`<div id="custom-alert-${treatment.id}" class="custom-alert alert alert-dark">Treatment is added to the cart!</div>`);
   orderBtn.text("Order");
   const li = $(`<li id="${treatment.id}" class="treatment-li"></li>`);
 
@@ -32,11 +33,25 @@ export const treatmentsListItem = (treatment) => {
 
   li.append(box.buildBox(image, content));  
   li.find(".box-content").addClass("treatment-box-content");
-  li.find(".box-content").append(orderBtn);
+  li.find(".box-content").append(orderBtn).append(alert);
 
   // --- functions ---
+  var hideTimeout = 1000; //how many ms to wait before hiding after displaying
+  function customAlert() {
+    //display the box
+    var customAlert = document.getElementById(`custom-alert-${treatment.id}`);
+    customAlert.style.visibility = 'visible';
+  
+    //set up a timer to hide it, a.k.a a setTimeout()
+    setTimeout(function() {
+      customAlert.style.visibility = 'hidden';
+    }, hideTimeout)
+  }
+
   const orderTreatment = function() {
       cart.add('treatments', {treatmentid: treatment.id, treatmentname: treatment.name, treatmentprice: treatment.price});
+      //alert("Treatment is added to the cart!");
+      customAlert();
   }
 
   // ---events ---

@@ -35,11 +35,22 @@ export const booking = () => {
       </tbody>
     </table>
   </div>
+  <button class="submit-order btn btn-dark">Submit</button>
  `);
 
   const remove = function(e) {
     cart.delete($(e.target).attr("type"), $(e.target).attr("id"));
     location.reload();
+  };
+
+  const submit = function() {
+    console.log(cookieObj.rooms.length == 0);
+    if((cookieObj.rooms.length == 0) && (cookieObj.treatments.length == 0))
+    {
+      alert("Please, order some items. Cart is empty!");
+    }else {
+      alert(` Thank you! Your order is submitted.`);
+    }
   };
 
 
@@ -73,8 +84,11 @@ export const booking = () => {
     data_table.find(".treatments-tb").append(table_row);
   });
 
+
+  
   container.append(data_table);
   fragment.append(container);
+  container.find(".submit-order").click(submit);
 
   return fragment;
 };

@@ -11434,11 +11434,21 @@ var booking = function booking() {
   var fragment = (0, _jquery.default)(new DocumentFragment());
   var cookieObj = cart.get();
   var container = (0, _jquery.default)("<div class=\"booking-container\"></div>");
-  var data_table = (0, _jquery.default)("\n  <div class=\"table-responsive-sm\">\n    <table class=\"table rooms-table table-dark table-hover\">\n      <thead>\n        <tr>\n          <th scope=\"col\">Booked rooms: ".concat(cookieObj.rooms.length, "</th>\n          <th scope=\"col\"></th>\n          <th scope=\"col\"></th>\n          <th scope=\"col\"></th>\n        </tr>\n      </thead>\n      <tbody class=\"rooms-tb\">\n      </tbody>\n      <thead>\n        <tr>\n          <th scope=\"col\">Booked treatments: ").concat(cookieObj.treatments.length, "</th>\n          <th scope=\"col\"></th>\n          <th scope=\"col\"></th>\n          <th scope=\"col\"></th>\n        </tr>\n      </thead>\n      <tbody class=\"treatments-tb\">\n      </tbody>\n    </table>\n  </div>\n "));
+  var data_table = (0, _jquery.default)("\n  <div class=\"table-responsive-sm\">\n    <table class=\"table rooms-table table-dark table-hover\">\n      <thead>\n        <tr>\n          <th scope=\"col\">Booked rooms: ".concat(cookieObj.rooms.length, "</th>\n          <th scope=\"col\"></th>\n          <th scope=\"col\"></th>\n          <th scope=\"col\"></th>\n        </tr>\n      </thead>\n      <tbody class=\"rooms-tb\">\n      </tbody>\n      <thead>\n        <tr>\n          <th scope=\"col\">Booked treatments: ").concat(cookieObj.treatments.length, "</th>\n          <th scope=\"col\"></th>\n          <th scope=\"col\"></th>\n          <th scope=\"col\"></th>\n        </tr>\n      </thead>\n      <tbody class=\"treatments-tb\">\n      </tbody>\n    </table>\n  </div>\n  <button class=\"submit-order btn btn-dark\">Submit</button>\n "));
 
   var remove = function remove(e) {
     cart.delete((0, _jquery.default)(e.target).attr("type"), (0, _jquery.default)(e.target).attr("id"));
     location.reload();
+  };
+
+  var submit = function submit() {
+    console.log(cookieObj.rooms.length == 0);
+
+    if (cookieObj.rooms.length == 0 && cookieObj.treatments.length == 0) {
+      alert("Please, order some items. Cart is empty!");
+    } else {
+      alert(" Thank you! Your order is submitted.");
+    }
   };
 
   cookieObj.rooms.forEach(function (item) {
@@ -11455,6 +11465,7 @@ var booking = function booking() {
   });
   container.append(data_table);
   fragment.append(container);
+  container.find(".submit-order").click(submit);
   return fragment;
 };
 
@@ -25316,6 +25327,7 @@ var cart = new _cart.Cart();
 var treatmentsListItem = function treatmentsListItem(treatment) {
   var box = new _box.Box();
   var orderBtn = new _button.Button("treatment-order-btn-" + treatment.id);
+  var alert = (0, _jquery.default)("<div id=\"custom-alert-".concat(treatment.id, "\" class=\"custom-alert alert alert-dark\">Treatment is added to the cart!</div>"));
   orderBtn.text("Order");
   var li = (0, _jquery.default)("<li id=\"".concat(treatment.id, "\" class=\"treatment-li\"></li>"));
   box.addClassToBox("treatment-box");
@@ -25334,14 +25346,28 @@ var treatmentsListItem = function treatmentsListItem(treatment) {
   var content = box.buildContent(header, description, footer);
   li.append(box.buildBox(image, content));
   li.find(".box-content").addClass("treatment-box-content");
-  li.find(".box-content").append(orderBtn); // --- functions ---
+  li.find(".box-content").append(orderBtn).append(alert); // --- functions ---
+
+  var hideTimeout = 1000; //how many ms to wait before hiding after displaying
+
+  function customAlert() {
+    //display the box
+    var customAlert = document.getElementById("custom-alert-".concat(treatment.id));
+    customAlert.style.visibility = 'visible'; //set up a timer to hide it, a.k.a a setTimeout()
+
+    setTimeout(function () {
+      customAlert.style.visibility = 'hidden';
+    }, hideTimeout);
+  }
 
   var orderTreatment = function orderTreatment() {
     cart.add('treatments', {
       treatmentid: treatment.id,
       treatmentname: treatment.name,
       treatmentprice: treatment.price
-    });
+    }); //alert("Treatment is added to the cart!");
+
+    customAlert();
   }; // ---events ---
 
 
@@ -25772,7 +25798,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58558" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57737" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

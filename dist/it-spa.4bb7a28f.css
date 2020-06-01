@@ -10680,6 +10680,18 @@ a.text-dark:hover, a.text-dark:focus {
 button[id*="treatment-order-btn-"] {
   width: 100%; }
 
+.custom-alert {
+  visibility: hidden;
+  background-color: #666;
+  color: #fff;
+  text-align: center;
+  margin: -40% auto;
+  padding: 2rem;
+  opacity: 0.9;
+  width: 20rem;
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 2%; }
+
 @media (max-width: 767px) {
   .room-description p:not([class="mobile"]) {
     display: none; } }
