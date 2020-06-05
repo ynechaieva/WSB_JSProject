@@ -205,7 +205,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"D:\\DEV\\WSB\\PROJECTS_\\JavaScript\\js-wsb\\node_modules\\daterangepicker\\daterangepicker.css":"node_modules/daterangepicker/daterangepicker.css","D:\\DEV\\WSB\\PROJECTS_\\JavaScript\\js-wsb\\node_modules\\bootstrap\\dist\\css\\bootstrap.min.css":"node_modules/bootstrap/dist/css/bootstrap.min.css","_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/process/browser.js":[function(require,module,exports) {
+},{"D:\\DEV\\WSB\\PROJECTS_\\JavaScript\\tmp\\WSB_JSProject\\node_modules\\daterangepicker\\daterangepicker.css":"node_modules/daterangepicker/daterangepicker.css","D:\\DEV\\WSB\\PROJECTS_\\JavaScript\\tmp\\WSB_JSProject\\node_modules\\bootstrap\\dist\\css\\bootstrap.min.css":"node_modules/bootstrap/dist/css/bootstrap.min.css","_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -24960,9 +24960,9 @@ var roomsListItem = function roomsListItem(room) {
   addFlexClass(room.id); // --- build box for room
 
   var image = box.image.addClass("room-image");
-  image.find('img').attr('src', room.img);
-  var header = box.header.text(room.name).addClass('room-item room-name');
-  var description = box.description.html(room.description).addClass('room-item room-description'); // description.html(`<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> 
+  image.find("img").attr("src", room.img);
+  var header = box.header.text(room.name).addClass("room-item room-name");
+  var description = box.description.html(room.description).addClass("room-item room-description"); // description.html(`<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
   //                   <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
   //                   <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>`);
 
@@ -24976,21 +24976,25 @@ var roomsListItem = function roomsListItem(room) {
   li.find(".box-content").append(bookBtn); // --- functions ---
 
   var bookRoom = function bookRoom() {
-    var inputVal = (0, _jquery.default)('#daterange').val();
+    var inputVal = (0, _jquery.default)("#daterange").val();
+    var flag = checkDates(inputVal);
 
-    if (checkRange(inputVal)) {
-      //console.log("book a room");
-      cart.add('rooms', {
-        roomid: room.id,
-        roomname: room.name,
-        roomprice: room.price,
-        roomrange: inputVal
-      });
+    if (flag) {
+      if (checkRange(inputVal)) {
+        cart.add("rooms", {
+          roomid: room.id,
+          roomname: room.name,
+          roomprice: room.price,
+          roomrange: inputVal
+        });
+      } else {
+        (0, _jquery.default)("#rooms-list").innerHTML("");
+      }
     } else {
-      (0, _jquery.default)("#rooms-list").innerHTML(""); //console.log("do not show a rooms");
+      alert("StartDate is more than EndDate. Plase select correct daterange");
+      (0, _jquery.default)("#daterange").val("");
     }
 
-    ;
     window.location.href = "/booking";
   };
 
@@ -25000,17 +25004,11 @@ var roomsListItem = function roomsListItem(room) {
     } else {
       box.addClassToBox("room-left");
     }
-
-    ;
   }
-
-  ;
 
   function isEven(n) {
     return n % 2 == 0;
   }
-
-  ;
 
   var checkRange = function checkRange(daterange) {
     var iStartDate = new Date(daterange.split(" - ")[0]);
@@ -25021,6 +25019,15 @@ var roomsListItem = function roomsListItem(room) {
       return startDate <= iStartDate <= endtDate || startDate <= iEndtDate <= endtDate;
     });
     return arr.length == 0;
+  };
+
+  var checkDates = function checkDates(daterange) {
+    var iStartDate = new Date(daterange.split(" - ")[0]);
+    var iEndtDate = new Date(daterange.split(" - ")[1]);
+
+    if (iStartDate > iEndtDate) {
+      return false;
+    } else return true;
   }; // ---events ---
 
 
@@ -25160,28 +25167,11 @@ var DaterangePicker = /*#__PURE__*/function () {
         minDate: now,
         maxDate: oneYearFromNow,
         locale: {
-          cancelLabel: 'Clear'
+          cancelLabel: "Clear"
         }
       });
       this.drp.val("");
-    } // clear(arr, class_) {
-    //     this.drp.on('cancel.daterangepicker', function(ev, picker){
-    //         this.drp.val("");
-    //         //Array.of($('[id*="room-order-btn-"]')).forEach(elem => elem.addClass("hidden")); 
-    //         addClassToElems(arr, class_);
-    //     });
-    // }
-    // apply(arr, class_) {
-    //     this.drp.on('apply.daterangepicker', function(ev, picker) {
-    //         this.startDate = picker.startDate.format('YYYY-MM-DD');
-    //         this.endDate = picker.endDate.format('YYYY-MM-DD');
-    //         //console.log(startDate);
-    //         //console.log(endDate);
-    //         //Array.of($('[id*="room-order-btn-"]')).forEach(elem => elem.removeClass("hidden"));  
-    //         remoweClassFromElems(arr, class_);
-    //       });
-    // }
-
+    }
   }]);
 
   return DaterangePicker;
@@ -25218,19 +25208,25 @@ var rooms = function rooms() {
   rlist.append(_roomsList.roomsList);
   fragment.append(jumbotron).append(rlist); // --- events ---
 
-  drp.on('apply.daterangepicker', function (ev, picker) {
+  drp.on("apply.daterangepicker", function (ev, picker) {
     showAvailableRoomsForRange(drp.val());
     Array.of((0, _jquery.default)('[id*="room-order-btn-"]')).forEach(function (elem) {
       return elem.removeClass("hidden");
     });
   });
-  drp.on('cancel.daterangepicker', function (ev, picker) {
+  drp.on("input", function (ev, picker) {
+    showAvailableRoomsForRange(drp.val());
+    Array.of((0, _jquery.default)('[id*="room-order-btn-"]')).forEach(function (elem) {
+      return elem.removeClass("hidden");
+    });
+  });
+  drp.on("cancel.daterangepicker", function (ev, picker) {
     drp.val("");
     Array.of((0, _jquery.default)('[id*="room-order-btn-"]')).forEach(function (elem) {
       return elem.addClass("hidden");
     });
     (0, _jquery.default)(".room-li").removeClass("hidden");
-  }); // --- 
+  }); // ---
   // --- functions
 
   var showAvailableRoomsForRange = function showAvailableRoomsForRange(daterange) {
@@ -25798,7 +25794,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57737" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53630" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
