@@ -10838,7 +10838,8 @@ thead th {
   box-sizing: border-box;
   font-size: 15px; }
 
-html, body {
+html,
+body {
   height: 100%; }
 
 .page-wrapper {

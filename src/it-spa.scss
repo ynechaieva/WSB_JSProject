@@ -1,44 +1,43 @@
 //@import '../node_modules/font-awesome/scss/font-awesome.scss';
 
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
-@import '../node_modules/daterangepicker/daterangepicker.css';
-@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-@import './scss/treatments.scss';
-@import './scss/rooms.scss';
-@import './scss/cart.scss';
-@import './scss//box.scss';
-@import './scss//home.scss';
-@import './scss/booking.scss';
-
+@import url("../node_modules/daterangepicker/daterangepicker.css");
+@import url("../node_modules/bootstrap/dist/css/bootstrap.min.css");
+@import "./scss/treatments.scss";
+@import "./scss/rooms.scss";
+@import "./scss/cart.scss";
+@import "./scss//box.scss";
+@import "./scss//home.scss";
+@import "./scss/booking.scss";
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-size: 15px;
-    
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 15px;
+}
 
-html, body {
-    height: 100%;
+html,
+body {
+  height: 100%;
 }
 
 .page-wrapper {
-    min-height: calc(100vh - 5.2rem);
-    background-image: url("https://images.unsplash.com/photo-1566125618135-8063e23d8e4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80");
-    background-size: cover;
+  min-height: calc(100vh - 5.2rem);
+  background-image: url("https://images.unsplash.com/photo-1566125618135-8063e23d8e4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80");
+  background-size: cover;
 }
 
 .footer {
-   padding: 0.2rem 0.2rem;
+  padding: 0.2rem 0.2rem;
 }
 
 .navbar-brand {
-    font-size: medium;
+  font-size: medium;
 }
 
 ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }

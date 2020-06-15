@@ -205,7 +205,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"D:\\DEV\\WSB\\PROJECTS_\\JavaScript\\tmp\\WSB_JSProject\\node_modules\\daterangepicker\\daterangepicker.css":"node_modules/daterangepicker/daterangepicker.css","D:\\DEV\\WSB\\PROJECTS_\\JavaScript\\tmp\\WSB_JSProject\\node_modules\\bootstrap\\dist\\css\\bootstrap.min.css":"node_modules/bootstrap/dist/css/bootstrap.min.css","_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/process/browser.js":[function(require,module,exports) {
+},{"../node_modules/daterangepicker/daterangepicker.css":"node_modules/daterangepicker/daterangepicker.css","../node_modules/bootstrap/dist/css/bootstrap.min.css":"node_modules/bootstrap/dist/css/bootstrap.min.css","_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -11309,7 +11309,7 @@ var Cart = /*#__PURE__*/function () {
   function Cart() {
     _classCallCheck(this, Cart);
 
-    this.key = 'IT_SPA_CART';
+    this.key = "YNEC_CART";
   }
 
   _createClass(Cart, [{
@@ -11318,7 +11318,7 @@ var Cart = /*#__PURE__*/function () {
       var _this = this;
 
       // PRZED: 'key1=val1; key2=val2; . . .'
-      var cookies = document.cookie.split(';'); // PO: ['key1=val1', 'key2=val2', . . .]
+      var cookies = document.cookie.split(";"); // PO: ['key1=val1', 'key2=val2', . . .]
 
       var itSpaCookie = cookies.find(function (cookie) {
         return cookie.startsWith(_this.key);
@@ -11338,7 +11338,7 @@ var Cart = /*#__PURE__*/function () {
         // 'IT_SPA_CART=wartosc'
         var itSpaCookie = this.cookie(); // 'IT_SPA_CART={rooms:[], treatments:[]}'
 
-        var cookiesObj = JSON.parse(itSpaCookie.split('=')[1]);
+        var cookiesObj = JSON.parse(itSpaCookie.split("=")[1]);
         return cookiesObj;
       } else {
         return this.init();
@@ -11349,9 +11349,9 @@ var Cart = /*#__PURE__*/function () {
     value: function add(type, value) {
       var cookiesObj = this.get();
 
-      if (type == 'treatments') {
+      if (type == "treatments") {
         cookiesObj.treatments.push(value);
-      } else if (type == 'rooms') {
+      } else if (type == "rooms") {
         cookiesObj.rooms.push(value);
       }
 
@@ -11364,11 +11364,11 @@ var Cart = /*#__PURE__*/function () {
     value: function _delete(type, id) {
       var cookiesObj = this.get();
 
-      if (type == 'treatments') {
+      if (type == "treatments") {
         cookiesObj.treatments = cookiesObj.treatments.filter(function (item) {
           return item.treatmentid != id;
         });
-      } else if (type == 'rooms') {
+      } else if (type == "rooms") {
         cookiesObj.rooms = cookiesObj.rooms.filter(function (item) {
           return item.roomid != id;
         });
@@ -25794,7 +25794,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53630" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61841" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
